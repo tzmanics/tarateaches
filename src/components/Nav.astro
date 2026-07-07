@@ -1,0 +1,33 @@
+---
+interface Props {
+  style?: "over-hero" | "on-page";
+}
+const { style = "on-page" } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#writing", label: "Writing" },
+  { href: "/#speaking", label: "Speaking" },
+  { href: "/#approach", label: "Approach" },
+  { href: "/plaiy/", label: "Plaiy" },
+];
+---
+
+<nav class={`nav ${style}`} aria-label="Main">
+  <a class="mark" href="/" aria-label="Tara Manicsic — home">TM</a>
+  <ul>
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            aria-current={path === l.href ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <span class="tag">Content &amp; Curriculum</span>
+</nav>

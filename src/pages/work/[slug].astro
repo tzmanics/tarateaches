@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const studies = await getCollection("caseStudies");
+  return studies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base
+  title={`${entry.data.title} — Tara Manicsic`}
+  description={entry.data.dek}
+>
+  <header class={`study-hero ${entry.data.theme}`}>
+    <span class="eyebrow">Case study · {entry.data.org}</span>
+    <h1 class="title">{entry.data.title}</h1>
+    <p class="dek">{entry.data.dek}</p>
+  </header>
+
+  <article class="section prose">
+    <Content />
+  </article>
+
+  <div class="section back-row">
+    <a class="pill" href="/#work"><span class="arrow">←</span>Back to the work</a>
+  </div>
+</Base>
+
+<style>
+  .study-hero {
+    padding: var(--space-5) var(--space-3);
+  }
+  .study-hero.red { background: var(--red); color: var(--mint); }
+  .study-hero.ink { background: var(--ink); color: var(--mint); }
+  .study-hero.paper {
+    background: var(--paper); color: var(--ink);
+    border-bottom: var(--rule);
+  }
+  .study-hero .eyebrow { color: inherit; opacity: 0.75; display: block; margin-bottom: var(--space-2); }
+  .study-hero.paper .eyebrow { color: var(--red); opacity: 1; }
+  .study-hero .title {
+    font-family: var(--font-display); font-weight: 400;
+    text-transform: uppercase; line-height: 1.02;
+    font-size: clamp(2.2rem, 5.5vw, 4.6rem);
+    max-width: 16em;
+  }
+  .study-hero.paper .title { color: var(--red); }
+  .study-hero .dek {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.3rem; line-height: 1.35;
+    margin-top: var(--space-2); max-width: 30em;
+  }
+  .back-row { text-align: center; padding-top: 0; }
+</style>

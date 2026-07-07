@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  /** "over-hero" overlays the nav on a hero image; "on-page" is the default bar. */
+  navStyle?: "over-hero" | "on-page";
+}
+
+const { title, description, navStyle = "on-page" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:wdth,wght@62..125,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Cloudflare Web Analytics: paste your token below after creating the
+         site in the Cloudflare dashboard (Analytics -> Web Analytics). Free,
+         cookieless, GDPR-friendly.
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+    -->
+  </head>
+  <body>
+    {navStyle === "on-page" && <Nav style="on-page" />}
+    <slot name="hero" />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,275 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import { sortByDateDesc, visiblePosts, postHref, defaultMeta } from "../lib/content";
+import talks from "../data/talks.json";
+
+const studies = (await getCollection("caseStudies")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const pair = studies.filter((s) => s.data.theme !== "paper").slice(0, 2);
+const anchor = studies.find((s) => s.data.theme === "paper");
+
+const allPosts = await getCollection("writing");
+const posts = sortByDateDesc(
+  visiblePosts(
+    allPosts.map((p) => ({ ...p.data, id: p.id })),
+    import.meta.env.DEV,
+  ),
+).slice(0, 6);
+---
+
+<Base
+  title="Tara Manicsic — Content & Curriculum Leadership"
+  description="I build education that sticks and teams that ship. Case studies in curriculum, certification, team leadership, and community building."
+  navStyle="over-hero"
+>
+  <header class="hero" slot="hero">
+    <div class="duo t-bw">
+      <img
+        src="/images/tara-hero.jpg"
+        alt="Tara Manicsic, smiling, outdoors"
+        width="1100"
+        height="1470"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <Nav style="over-hero" />
+
+    <aside class="hero-callout">
+      <span class="eyebrow">Content &amp; Curriculum Leadership</span>
+      <p>
+        I build education that sticks and teams that ship. I&rsquo;ve led through
+        chaos — layoffs, remote transitions, competing priorities, tough
+        tradeoffs. <strong>The result: better communication, better work, better outcomes.</strong>
+      </p>
+      <div class="cta-row">
+        <a class="pill" href="#work"><span class="arrow">→</span>See the work</a>
+        <a class="pill ghost" href="/resume-tara-manicsic.pdf" download>Resume (PDF)</a>
+      </div>
+    </aside>
+
+    <h1 class="hero-name display">Tara Manicsic</h1>
+  </header>
+
+  <div class="strip">
+    <p>Education that sticks. Teams that ship.</p>
+  </div>
+
+  <section id="work" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Featured work</span>
+      <h2 class="display">Three things I built<br />&amp; what it took to build them</h2>
+    </div>
+
+    <div class="work-pair">
+      {
+        pair.map((s) => (
+          <article class={`slab ${s.data.theme}`}>
+            <span class="eyebrow">Case study · {s.data.org}</span>
+            <h3>{s.data.title}</h3>
+            <p class="dek">{s.data.dek}</p>
+            <ul>
+              {s.data.facts.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+            <a class="read" href={`/work/${s.id}/`}>Read the case study →</a>
+          </article>
+        ))
+      }
+    </div>
+
+    {
+      anchor && (
+        <article class="slab paper">
+          <div>
+            <span class="eyebrow">Case study · {anchor.data.org}</span>
+            <h3>{anchor.data.title}</h3>
+            <p class="dek">{anchor.data.dek}</p>
+          </div>
+          <div>
+            <ul>
+              {anchor.data.facts.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+            <a class="read" href={`/work/${anchor.id}/`}>Read the case study →</a>
+          </div>
+        </article>
+      )
+    }
+  </section>
+
+  <section id="writing" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Writing</span>
+      <h2 class="display">On teaching, teams<br />&amp; AI literacy</h2>
+    </div>
+    <div class="hair-grid ink">
+      {
+        posts.map((p) => (
+          <article>
+            <a href={postHref(p, p.id)}>
+              <h3>{p.title}</h3>
+            </a>
+            <span class="meta">{p.meta ?? defaultMeta(p)}</span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="speaking" class="section">
+    <div class="section-head">
+      <span class="eyebrow">Speaking</span>
+      <h2 class="display">Talks &amp; workshops</h2>
+    </div>
+    <div class="hair-grid red">
+      {
+        talks.map((t) => (
+          <article>
+            <a href={t.url}>
+              <h3>{t.title}</h3>
+            </a>
+            <span class="meta">{t.kind} · {t.venue}</span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="approach" class="section approach">
+    <div class="section-head">
+      <span class="eyebrow">Approach</span>
+      <h2 class="display">How I lead</h2>
+    </div>
+    <p>
+      Good education is engineering: you find where understanding breaks, and
+      you fix the failure point — <em>then you put it in production with real people.</em>
+    </p>
+    <p>
+      Teams don&rsquo;t need less change. They need leaders who metabolize
+      change into a plan people can actually follow.
+    </p>
+  </section>
+</Base>
+
+<style>
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: 100vh; background: var(--ink); }
+  .hero .duo { position: absolute; inset: 0; }
+  .hero .duo img { object-position: 62% 18%; }
+  .hero .scrim {
+    position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent 48%, rgba(20, 17, 13, 0.55) 80%),
+      linear-gradient(0deg, rgba(20, 17, 13, 0.35) 0%, transparent 30%);
+  }
+
+  .hero-callout {
+    position: absolute; z-index: 5;
+    right: var(--space-3); top: 44%; transform: translateY(-50%);
+    max-width: 22rem;
+    color: var(--paper);
+  }
+  .hero-callout::before {
+    content: ""; display: block;
+    width: 3.5rem; height: 3px; background: var(--red);
+    margin-bottom: var(--space-2);
+  }
+  .hero-callout .eyebrow { display: block; margin-bottom: var(--space-2); color: var(--mint); }
+  .hero-callout p {
+    font-family: var(--font-display);
+    font-size: 1.45rem; line-height: 1.32;
+  }
+  .hero-callout p strong { font-weight: 400; font-style: italic; color: var(--mint); }
+  .hero-callout .cta-row {
+    display: flex; gap: var(--space-2); margin-top: var(--space-3);
+    flex-wrap: wrap; align-items: center;
+  }
+
+  .hero-name {
+    position: absolute; z-index: 4;
+    left: var(--space-3); right: var(--space-3); bottom: 4vh;
+    font-size: clamp(3rem, 10.5vw, 10.5rem);
+    white-space: nowrap;
+  }
+
+  /* ---------- case studies ---------- */
+  .work-pair {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    max-width: 74rem; margin: 0 auto;
+  }
+  @media (min-width: 900px) {
+    .work-pair { padding-bottom: var(--askew); }
+    .work-pair .slab:nth-child(2) { transform: translateY(var(--askew)); }
+  }
+
+  .slab { padding: var(--space-4) var(--space-3); }
+  .slab.red { background: var(--red); color: var(--mint); }
+  .slab.ink { background: var(--ink); color: var(--mint); }
+  .slab.paper {
+    background: var(--paper); color: var(--ink);
+    border-top: var(--rule); border-bottom: var(--rule);
+    margin: var(--space-4) calc(-1 * var(--space-3)) 0;
+    padding: var(--space-5) var(--space-3);
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-4); align-items: start;
+  }
+  .slab .eyebrow { display: block; margin-bottom: var(--space-2); color: inherit; opacity: 0.75; }
+  .slab.paper .eyebrow { color: var(--red); opacity: 1; }
+  .slab h3 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(1.9rem, 3.2vw, 3rem); line-height: 1.02;
+    text-transform: uppercase;
+  }
+  .slab.paper h3 { color: var(--red); font-size: clamp(2rem, 4.4vw, 3.8rem); }
+  .slab .dek {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.25rem; line-height: 1.35;
+    margin-top: var(--space-2); max-width: 26em;
+  }
+  .slab ul { list-style: none; padding: 0; margin-top: var(--space-3); }
+  .slab.paper ul { margin-top: 0; }
+  .slab li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    max-width: 34em;
+  }
+  .slab li:first-child { border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+  .slab.paper li { border-color: color-mix(in srgb, var(--red) 45%, transparent); }
+  .slab .read {
+    margin-top: var(--space-3); display: inline-block;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 0.3em;
+  }
+  .slab.paper .read { color: var(--red); }
+
+  /* ---------- approach ---------- */
+  .approach { text-align: center; }
+  .approach p {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    line-height: 1.32; max-width: 28em; margin: 0 auto;
+  }
+  .approach p + p { margin-top: var(--space-3); }
+  .approach em { color: var(--red); }
+
+  @media (max-width: 899px) {
+    .work-pair { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .hero .scrim {
+      background: linear-gradient(0deg, rgba(20, 17, 13, 0.6) 0%, rgba(20, 17, 13, 0.25) 45%, transparent 70%);
+    }
+    .hero-callout { left: var(--space-2); right: var(--space-2); max-width: none; top: auto; bottom: 15vh; transform: none; }
+    .hero-name { font-size: clamp(2.4rem, 12.5vw, 5rem); bottom: 2vh; }
+    .slab.paper { grid-template-columns: 1fr; }
+  }
+</style>

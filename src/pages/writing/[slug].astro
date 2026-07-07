@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection(
+    "writing",
+    ({ data }) => !data.externalUrl && (import.meta.env.DEV || !data.draft),
+  );
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const dateLabel = entry.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base
+  title={`${entry.data.title} — Tara Manicsic`}
+  description={entry.data.excerpt}
+>
+  <header class="post-hero">
+    <span class="eyebrow">Writing · {dateLabel}</span>
+    <h1 class="display">{entry.data.title}</h1>
+    <p class="excerpt">{entry.data.excerpt}</p>
+  </header>
+
+  <article class="section prose">
+    <Content />
+  </article>
+
+  <div class="section back-row">
+    <a class="pill" href="/writing/"><span class="arrow">←</span>More writing</a>
+  </div>
+</Base>
+
+<style>
+  .post-hero {
+    padding: var(--space-5) var(--space-3) var(--space-4);
+    border-bottom: var(--rule);
+    text-align: center;
+  }
+  .post-hero .eyebrow { display: block; margin-bottom: var(--space-2); }
+  .post-hero h1 {
+    font-size: clamp(2rem, 4.6vw, 4rem);
+    max-width: 18em; margin: 0 auto;
+  }
+  .post-hero .excerpt {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.25rem; line-height: 1.35;
+    max-width: 30em; margin: var(--space-2) auto 0;
+  }
+  .back-row { text-align: center; padding-top: 0; }
+</style>

@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { sortByDateDesc, visiblePosts, postHref, defaultMeta } from "../../lib/content";
+
+const allPosts = await getCollection("writing");
+const posts = sortByDateDesc(
+  visiblePosts(
+    allPosts.map((p) => ({ ...p.data, id: p.id })),
+    import.meta.env.DEV,
+  ),
+);
+---
+
+<Base
+  title="Writing — Tara Manicsic"
+  description="Writing on teaching, teams, and AI literacy by Tara Manicsic."
+>
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Writing</span>
+      <h1 class="display">On teaching, teams<br />&amp; AI literacy</h1>
+    </div>
+    <div class="hair-grid ink">
+      {
+        posts.map((p) => (
+          <article>
+            <a href={postHref(p, p.id)}>
+              <h3>{p.title}</h3>
+            </a>
+            <span class="meta">{p.meta ?? defaultMeta(p)}</span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>
