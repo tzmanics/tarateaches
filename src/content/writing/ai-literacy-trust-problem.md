@@ -1,37 +1,42 @@
 ---
-title: "AI literacy is a trust problem, not a tooling problem"
+title: "AI literacy: trust & agency"
 date: 2026-06-15
-excerpt: "Most AI training teaches people where the buttons are. The actual skill is knowing when to trust the output — and that's a curriculum problem."
+excerpt: "We tend to trust AI too little or too much, throwing human agency back into the mix can balance this out."
 tags: ["AI Education"]
 meta: "New · AI Education"
 ---
+# AI literacy: trust & agency
 
-<!-- DRAFT: edit into your own words. This one answers the interview question: "How would you approach AI education for a broad audience?" -->
+## Trusting, it's even harder with robots.
 
-Most AI training I've seen teaches people where the buttons are. Here's the prompt box. Here's how to upload a file. Here's a template for a marketing email.
+**Lead idea:** People move through two divergent paths with AI trust
 
-Then those same people ship a hallucinated statistic to their boss, get burned once, and quietly stop using the tools altogether. Or the opposite: they never get burned, so they trust everything, and eventually ship something worse.
+- Path one: fear → blind trust → betrayal → abandonment
+- Path two: blind trust → never realizing they're wrong → spreading misinformation
+- Why both paths matter for organizers, teams, leaders
 
-Neither group has a tooling problem. Both have a calibration problem.
+There seems to be two paths we go down when using AI: no trust or blind trust. Either from stories we hear or personally getting burned by using false
+information with confidence in it's valididty, we have have no trust in AI. On the other hand, we can blindly trust it without giving much thought to
+fact-checking. Reminding users that AI is a step not a solution and that we still have the human agency to control the outcome of our output can guide more
+trusted and safe usage of AI.
 
-## The skill nobody's teaching
+## False
 
-The core competency of working with AI isn't prompting. It's **calibrated trust**: knowing, for a given task, how likely the output is to be right, how expensive it is to be wrong, and how you'd check.
+**Lead idea:** This isn't just about tech literacy; it affects real decisions and real stakes
 
-That's three separate judgments, and they're learnable:
+- What's at risk when people misuse AI outputs (campaigns, nonprofits, teams, etc.)
+- Why the stakes matter specifically to the work you care about
 
-- **Failure modes by task type.** Models are strong at transformation (summarize, translate, reformat) and shakier at retrieval (exact quotes, citations, current facts). A learner who knows *which kind of task they just asked for* can predict their own risk.
-- **Cost of being wrong.** A brainstorm that's 70% good is a win. A legal citation that's 99% good is a liability. Same tool, opposite stakes.
-- **Verification as a habit, not a vibe.** Teach concrete checks: click the citation, run the code, ask for the source, ask the model to argue against itself.
+## Paragraph 3: The Core Reframe (2-3 sentences)
 
-## What this means for curriculum
+**Lead idea:** AI as a step, not a solution—you're still the one steering
 
-If trust calibration is the skill, curriculum design changes:
+- You have the agency and judgment
+- AI is one tool in your process, not the whole answer
+- This is empowering, not limiting
 
-1. **Lead with failure, kindly.** The most valuable lab exercise I know is having learners *induce* a confident wrong answer, then catch it. One supervised burn beats ten warnings on a slide.
-2. **Teach task taxonomy before tool features.** "What kind of ask is this?" transfers across every tool and model release. Button locations don't.
-3. **Assess judgment, not recall.** Don't quiz "what is a hallucination." Hand them an output and ask: what here would you verify first, and how?
+## Paragraph 4: The Approach—Building Verification Into Workflow (2-3 sentences)
 
-## The stakes
+**Lead idea:** Teach people to add one critical step: verification as part of normal work
 
-People who under-trust AI lose the productivity. People who over-trust it lose credibility — sometimes their organization's. The whole game of AI literacy is moving people into the narrow, useful middle, and that's not a feature tour. That's education. It's the kind I want to build.
+- Example: fact-checking sources before...
