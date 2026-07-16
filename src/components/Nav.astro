@@ -14,7 +14,22 @@ const links = [
 ---
 
 <nav class={`nav ${style}`} aria-label="Main">
-  <a class="mark" href="/" aria-label="Tara Manicsic — home">TM</a>
+  <a class="mark" href="/" aria-label="Tara Manicsic — home">
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 10.5 12 3l9 7.5" />
+      <path d="M5 9.5V21h5v-6h4v6h5V9.5" />
+    </svg>
+  </a>
   <ul>
     {
       links.map((l) => (
@@ -29,5 +44,4 @@ const links = [
       ))
     }
   </ul>
-  <span class="tag">Content &amp; Curriculum</span>
 </nav>
