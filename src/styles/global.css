@@ -152,19 +152,14 @@
     padding: var(--space-2) var(--space-3);
     color: var(--ink);
   }
-  /* Spans the hero's image column (1.5fr of 2.5fr = 60%) so it never
-     overlaps the callout column; links spread evenly across the picture. */
+  /* Full-width bar over the hero photo; links spread evenly across it. */
   .nav.over-hero {
-    position: absolute; inset: 0 40% auto 0; z-index: 10;
+    position: absolute; inset: 0 0 auto 0; z-index: 10;
     display: flex; align-items: center;
     border-bottom: 1px solid color-mix(in srgb, var(--ink) 40%, transparent);
   }
   .nav.over-hero ul { flex: 1; justify-content: space-evenly; }
   .nav.over-hero ul li + li::before { content: none; }
-  @media (max-width: 899px) {
-    .nav.over-hero { inset: 0 0 auto 0; }
-    .nav.over-hero ul { justify-content: space-between; }
-  }
   .nav.on-page { border-bottom: var(--rule-ink); }
   .mark {
     justify-self: start;
@@ -237,6 +232,8 @@
     .nav .tag { display: none; }
     .nav ul { justify-self: end; }
     .nav ul li + li::before { margin: 0 .5em; }
+    .nav ul a { font-size: .62rem; letter-spacing: .08em; }
+    .nav.over-hero ul { justify-content: space-between; margin-left: var(--space-2); }
     .hair-grid { grid-template-columns: 1fr; }
     .hair-grid > * { border-right: 0 !important; min-height: 0; }
     .hair-grid.red > * { border-bottom: var(--rule) !important; }

@@ -46,17 +46,17 @@ const posts = sortByDateDesc(
     <Nav style="over-hero" />
     <div class="duo t-bw">
       <img
-        src="/images/tara-hero.jpg"
-        alt="Tara Manicsic, smiling, outdoors"
-        width="1100"
-        height="1470"
+        src="/images/tara-hero-full.jpg"
+        alt="Tara Manicsic, smiling, on a rooftop with the city skyline behind her"
+        width="1584"
+        height="672"
         loading="eager"
         fetchpriority="high"
       />
     </div>
 
     <aside class="hero-callout">
-      <p>Tara Manicsic</p>
+      <p class="callout-name">Tara Manicsic</p>
       <span class="eyebrow">Content &amp; Curriculum Leadership</span>
       <p>
         I build education that sticks and teams that ship. I&rsquo;ve led through
@@ -167,25 +167,33 @@ const posts = sortByDateDesc(
 
 <style>
   /* ---------- hero ---------- */
-  .hero {
-    position: relative; min-height: 100vh;
-    display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    background: var(--ink);
+  .hero { position: relative; min-height: 100vh; background: var(--ink); }
+  .hero .duo { position: absolute; inset: 0; }
+  .hero .duo img {
+    transform: scale(1.18);
+    object-position: 50% 32%;
   }
-  .hero .duo { min-height: 100%; }
-  .hero .duo img { object-position: 62% 18%; }
 
   .hero-callout {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: calc(var(--space-4) + 3rem) var(--space-3) var(--space-4);
+    position: absolute; z-index: 5;
+    right: var(--space-3); top: calc(3.5rem + 1rem);
+    max-width: 24rem;
+    background: color-mix(in srgb, var(--ink) 74%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: var(--space-3);
     color: var(--paper);
   }
-  .hero-callout::before {
+  .hero-callout .callout-name {
+    font-size: 1.9rem; line-height: 1.1;
+    margin-bottom: var(--space-2);
+  }
+  .hero-callout .eyebrow { display: block; margin-bottom: var(--space-2); color: var(--mint); }
+  .hero-callout .eyebrow::before {
     content: ""; display: block;
     width: 3.5rem; height: 3px; background: var(--red);
     margin-bottom: var(--space-2);
   }
-  .hero-callout .eyebrow { display: block; margin-bottom: var(--space-2); color: var(--mint); }
   .hero-callout p {
     font-family: var(--font-display);
     font-size: 1.45rem; line-height: 1.32;
@@ -195,13 +203,6 @@ const posts = sortByDateDesc(
   .hero-callout .cta-row {
     display: flex; gap: var(--space-2); margin-top: var(--space-3);
     flex-wrap: wrap; align-items: center;
-  }
-
-  .hero-name {
-    position: absolute; z-index: 4;
-    left: var(--space-3); top: 4.5rem;
-    font-size: 3em;
-    white-space: nowrap;
   }
 
   /* ---------- case studies ---------- */
@@ -258,15 +259,16 @@ const posts = sortByDateDesc(
   .approach em { color: var(--red); }
 
   @media (max-width: 899px) {
-    .hero { grid-template-columns: 1fr; min-height: 0; }
-    .hero .duo { min-height: 62vh; }
-    .hero-callout { padding: var(--space-4) var(--space-3); }
     .work-pair { grid-template-columns: 1fr; }
     .paper-row { grid-template-columns: 1fr; }
     .slab.paper + .slab.paper { border-left: 0; border-top: var(--rule); }
   }
   @media (max-width: 760px) {
-    .hero-callout { padding: var(--space-3) var(--space-2); }
-    .hero-name { left: var(--space-2); top: 4rem; font-size: 2rem; }
+    .hero .duo img { transform: none; }
+    .hero-callout {
+      left: var(--space-2); right: var(--space-2);
+      top: auto; bottom: var(--space-2); max-width: none;
+    }
+    .hero-callout .callout-name { font-size: 1.5rem; }
   }
 </style>
