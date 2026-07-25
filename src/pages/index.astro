@@ -69,11 +69,22 @@ const posts = sortByDateDesc(
       </div>
     </aside>
   </header>
-
-  <div class="strip">
-    <p>Education that sticks. Teams that ship.</p>
-  </div>
-
+  <hr>
+  <section id="approach" class="section approach">
+    <div class="section-head">
+      <span class="eyebrow">Approach</span>
+      <h2 class="display">How I lead</h2>
+    </div>
+    <p>
+      Good education is engineering: you find where understanding breaks, and
+      you fix the failure point — <em>then you put it in production with real people.</em>
+    </p>
+    <p>
+      Teams don&rsquo;t need less change. They need leaders who metabolize
+      change into a plan people can actually follow.
+    </p>
+  </section>
+  <hr>
   <section id="work" class="section">
     <div class="section-head">
       <span class="eyebrow">Featured work</span>
@@ -110,7 +121,7 @@ const posts = sortByDateDesc(
       )
     }
   </section>
-
+  <hr>
   <section id="writing" class="section">
     <div class="section-head">
       <span class="eyebrow">Writing</span>
@@ -148,21 +159,6 @@ const posts = sortByDateDesc(
       }
     </div>
   </section>
-
-  <section id="approach" class="section approach">
-    <div class="section-head">
-      <span class="eyebrow">Approach</span>
-      <h2 class="display">How I lead</h2>
-    </div>
-    <p>
-      Good education is engineering: you find where understanding breaks, and
-      you fix the failure point — <em>then you put it in production with real people.</em>
-    </p>
-    <p>
-      Teams don&rsquo;t need less change. They need leaders who metabolize
-      change into a plan people can actually follow.
-    </p>
-  </section>
 </Base>
 
 <style>
@@ -176,12 +172,12 @@ const posts = sortByDateDesc(
 
   .hero-callout {
     position: absolute; z-index: 5;
-    right: var(--space-3); top: calc(3.5rem + 1rem);
+    right: var(--space-3); top: 10rem;
     max-width: 24rem;
     background: color-mix(in srgb, var(--ink) 74%, transparent);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    padding: var(--space-3);
+    padding: var(--space-2);
     color: var(--paper);
   }
   .hero-callout .callout-name {
@@ -196,7 +192,7 @@ const posts = sortByDateDesc(
   }
   .hero-callout p {
     font-family: var(--font-display);
-    font-size: 1.45rem; line-height: 1.32;
+    font-size: 1.25rem; line-height: 1.25;
     max-width: 22em;
   }
   .hero-callout p strong { font-weight: 400; font-style: italic; color: var(--mint); }
