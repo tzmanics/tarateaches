@@ -4,7 +4,8 @@
     ".astro/types.d.ts",
     "src/**/*",
     "functions/**/*",
-    "tests/**/*"
+    "tests/**/*",
+    "./worker-configuration.d.ts"
   ],
   "exclude": [
     "dist"
