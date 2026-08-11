@@ -1,20 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import {
-  sortByDateDesc,
-  visiblePosts,
-  postHref,
-  defaultMeta,
-} from "../../lib/content";
+import { postHref, defaultMeta } from "../../lib/content";
+import { getWritingPosts } from "../../lib/posts";
 
-const allPosts = await getCollection("writing");
-const posts = sortByDateDesc(
-  visiblePosts(
-    allPosts.map((p) => ({ ...p.data, id: p.id })),
-    import.meta.env.DEV,
-  ),
-);
+const posts = await getWritingPosts();
 ---
 
 <Base

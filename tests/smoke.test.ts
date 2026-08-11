@@ -39,7 +39,7 @@ describe("built site", () => {
 
   it("a writing post page renders", () => {
     const html = page("writing/ai-literacy-trust-problem/index.html");
-    expect(html).toContain("trust problem");
+    expect(html).toContain("human agency");
   });
 
   it("the plaiy page renders its form and modes", () => {

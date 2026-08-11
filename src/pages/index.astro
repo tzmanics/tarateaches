@@ -4,12 +4,8 @@ import { Picture } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
 import heroPhoto from "../assets/tara-hero-full.jpg";
-import {
-  sortByDateDesc,
-  visiblePosts,
-  postHref,
-  defaultMeta,
-} from "../lib/content";
+import { postHref, defaultMeta } from "../lib/content";
+import { getWritingPosts } from "../lib/posts";
 import talks from "../data/talks.json";
 
 const studies = (await getCollection("caseStudies")).sort(
@@ -35,13 +31,7 @@ for (const s of studies) {
 }
 flush();
 
-const allPosts = await getCollection("writing");
-const posts = sortByDateDesc(
-  visiblePosts(
-    allPosts.map((p) => ({ ...p.data, id: p.id })),
-    import.meta.env.DEV,
-  ),
-).slice(0, 6);
+const posts = (await getWritingPosts()).slice(0, 6);
 ---
 
 <Base
@@ -109,33 +99,19 @@ const posts = sortByDateDesc(
     </div>
 
     {
-      rows.map((row) =>
-        row.kind === "pair" ? (
-          <div class="work-pair">
-            {row.items.map((s) => (
-              <article class={`slab ${s.data.theme}`}>
-                <span class="eyebrow">Case study · {s.data.org}</span>
-                <h3>
-                  <a href={`/work/${s.id}/`}>{s.data.title}</a>
-                </h3>
-                <p class="dek">{s.data.dek}</p>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div class="paper-row">
-            {row.items.map((s) => (
-              <article class="slab paper">
-                <span class="eyebrow">Case study · {s.data.org}</span>
-                <h3>
-                  <a href={`/work/${s.id}/`}>{s.data.title}</a>
-                </h3>
-                <p class="dek">{s.data.dek}</p>
-              </article>
-            ))}
-          </div>
-        ),
-      )
+      rows.map((row) => (
+        <div class={row.kind === "pair" ? "work-pair" : "paper-row"}>
+          {row.items.map((s) => (
+            <article class={`slab ${s.data.theme}`}>
+              <span class="eyebrow">Case study · {s.data.org}</span>
+              <h3>
+                <a href={`/work/${s.id}/`}>{s.data.title}</a>
+              </h3>
+              <p class="dek">{s.data.dek}</p>
+            </article>
+          ))}
+        </div>
+      ))
     }
   </section>
   <hr />
