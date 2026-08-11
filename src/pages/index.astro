@@ -185,6 +185,7 @@ const posts = sortByDateDesc(
   .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh; /* stable on iOS while the URL bar collapses */
     background: var(--ink);
   }
   .hero .duo {
@@ -367,6 +368,7 @@ const posts = sortByDateDesc(
     .hero .duo img {
       transform: none;
     }
+    /* Compact the callout so the face stays clear of it on small phones */
     .hero-callout {
       left: var(--space-2);
       right: var(--space-2);
@@ -375,7 +377,22 @@ const posts = sortByDateDesc(
       max-width: none;
     }
     .hero-callout .callout-name {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+      margin-bottom: var(--space-1);
+    }
+    .hero-callout .eyebrow,
+    .hero-callout .eyebrow::before {
+      margin-bottom: var(--space-1);
+    }
+    .hero-callout p {
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+    .hero-callout .cta-row {
+      margin-top: var(--space-2);
+    }
+    .hero-callout .pill {
+      font-size: 0.8rem;
     }
   }
 </style>

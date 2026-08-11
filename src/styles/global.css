@@ -429,22 +429,29 @@
   @media (max-width: 760px) {
     .nav {
       grid-template-columns: auto 1fr;
+      padding: var(--space-1) var(--space-2);
     }
     .nav .tag {
       display: none;
     }
     .nav ul {
       justify-self: end;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      column-gap: 1.1rem;
     }
+    /* pipes read as noise this small; spacing does the separating */
     .nav ul li + li::before {
-      margin: 0 0.5em;
+      content: none;
     }
     .nav ul a {
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0; /* comfortable tap target */
     }
     .nav.over-hero ul {
-      justify-content: space-between;
+      justify-content: center;
+      column-gap: 1.4rem;
       margin-left: var(--space-2);
     }
     .hair-grid {
