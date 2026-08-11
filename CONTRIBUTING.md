@@ -25,7 +25,7 @@ content: draft post on assessment design
 chore: bump astro to 7.x
 ```
 
-Present tense, under ~70 characters, body only when the *why* isn't obvious.
+Present tense, under ~70 characters, body only when the _why_ isn't obvious.
 
 ## Before you push
 

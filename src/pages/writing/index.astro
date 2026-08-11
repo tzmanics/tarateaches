@@ -1,7 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import { sortByDateDesc, visiblePosts, postHref, defaultMeta } from "../../lib/content";
+import {
+  sortByDateDesc,
+  visiblePosts,
+  postHref,
+  defaultMeta,
+} from "../../lib/content";
 
 const allPosts = await getCollection("writing");
 const posts = sortByDateDesc(

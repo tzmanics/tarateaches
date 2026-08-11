@@ -2,7 +2,12 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
-import { sortByDateDesc, visiblePosts, postHref, defaultMeta } from "../lib/content";
+import {
+  sortByDateDesc,
+  visiblePosts,
+  postHref,
+  defaultMeta,
+} from "../lib/content";
 import talks from "../data/talks.json";
 
 const studies = (await getCollection("caseStudies")).sort(
@@ -59,17 +64,22 @@ const posts = sortByDateDesc(
       <p class="callout-name">Tara Manicsic</p>
       <span class="eyebrow">Content &amp; Curriculum Leadership</span>
       <p>
-        I build education that sticks and teams that ship. I&rsquo;ve led through
-        chaos — layoffs, remote transitions, competing priorities, tough
-        tradeoffs. <strong>The result: better communication, better work, better outcomes.</strong>
+        I build education that sticks and teams that ship. I&rsquo;ve led
+        through chaos — layoffs, remote transitions, competing priorities, tough
+        tradeoffs. <strong
+          >The result: better communication, better work, better outcomes.</strong
+        >
       </p>
       <div class="cta-row">
-        <a class="pill" href="#work"><span class="arrow">→</span>See the work</a>
-        <a class="pill ghost" href="/resume-tara-manicsic.pdf" download><span class="arrow">→</span>Resume (PDF)</a>
+        <a class="pill" href="#work"><span class="arrow">→</span>See the work</a
+        >
+        <a class="pill ghost" href="/resume-tara-manicsic.pdf" download
+          ><span class="arrow">→</span>Resume (PDF)</a
+        >
       </div>
     </aside>
   </header>
-  <hr>
+  <hr />
   <section id="approach" class="section approach">
     <div class="section-head">
       <span class="eyebrow">Approach</span>
@@ -77,18 +87,22 @@ const posts = sortByDateDesc(
     </div>
     <p>
       Good education is engineering: you find where understanding breaks, and
-      you fix the failure point — <em>then you put it in production with real people.</em>
+      you fix the failure point — <em
+        >then you put it in production with real people.</em
+      >
     </p>
     <p>
       Teams don&rsquo;t need less change. They need leaders who metabolize
       change into a plan people can actually follow.
     </p>
   </section>
-  <hr>
+  <hr />
   <section id="work" class="section">
     <div class="section-head">
       <span class="eyebrow">Featured work</span>
-      <h2 class="display">Six things I built<br />&amp; what it took to build them</h2>
+      <h2 class="display">
+        Six things I built<br />&amp; what it took to build them
+      </h2>
     </div>
 
     {
@@ -121,7 +135,7 @@ const posts = sortByDateDesc(
       )
     }
   </section>
-  <hr>
+  <hr />
   <section id="writing" class="section">
     <div class="section-head">
       <span class="eyebrow">Writing</span>
@@ -153,7 +167,9 @@ const posts = sortByDateDesc(
             <a href={t.url}>
               <h3>{t.title}</h3>
             </a>
-            <span class="meta">{t.kind} · {t.venue}</span>
+            <span class="meta">
+              {t.kind} · {t.venue}
+            </span>
           </article>
         ))
       }
@@ -163,16 +179,25 @@ const posts = sortByDateDesc(
 
 <style>
   /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 100vh; background: var(--ink); }
-  .hero .duo { position: absolute; inset: 0; }
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--ink);
+  }
+  .hero .duo {
+    position: absolute;
+    inset: 0;
+  }
   .hero .duo img {
     transform: scale(1.18);
     object-position: 50% 32%;
   }
 
   .hero-callout {
-    position: absolute; z-index: 5;
-    right: var(--space-3); top: 10rem;
+    position: absolute;
+    z-index: 5;
+    right: var(--space-3);
+    top: 10rem;
     max-width: 24rem;
     background: color-mix(in srgb, var(--ink) 74%, transparent);
     backdrop-filter: blur(4px);
@@ -181,90 +206,173 @@ const posts = sortByDateDesc(
     color: var(--paper);
   }
   .hero-callout .callout-name {
-    font-size: 1.9rem; line-height: 1.1;
+    font-size: 1.9rem;
+    line-height: 1.1;
     margin-bottom: var(--space-2);
   }
-  .hero-callout .eyebrow { display: block; margin-bottom: var(--space-2); color: var(--mint); }
+  .hero-callout .eyebrow {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--mint);
+  }
   .hero-callout .eyebrow::before {
-    content: ""; display: block;
-    width: 3.5rem; height: 3px; background: var(--red);
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    background: var(--red);
     margin-bottom: var(--space-2);
   }
   .hero-callout p {
     font-family: var(--font-display);
-    font-size: 1.25rem; line-height: 1.25;
+    font-size: 1.25rem;
+    line-height: 1.25;
     max-width: 22em;
   }
-  .hero-callout p strong { font-weight: 400; font-style: italic; color: var(--mint); }
+  .hero-callout p strong {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--mint);
+  }
   .hero-callout .cta-row {
-    display: flex; gap: var(--space-2); margin-top: var(--space-3);
-    flex-wrap: wrap; align-items: center;
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   /* ---------- case studies ---------- */
   .work-pair {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
-    max-width: 74rem; margin: 0 auto;
+    max-width: 74rem;
+    margin: 0 auto;
   }
   @media (min-width: 900px) {
-    .work-pair { padding-bottom: var(--askew); }
-    .work-pair .slab:nth-child(2) { transform: translateY(var(--askew)); }
+    .work-pair {
+      padding-bottom: var(--askew);
+    }
+    .work-pair .slab:nth-child(2) {
+      transform: translateY(var(--askew));
+    }
   }
 
-  .slab { padding: var(--space-4) var(--space-3); }
-  .slab.red { background: var(--red); color: var(--mint); }
-  .slab.ink { background: var(--ink); color: var(--mint); }
+  .slab {
+    padding: var(--space-4) var(--space-3);
+  }
+  .slab.red {
+    background: var(--red);
+    color: var(--mint);
+  }
+  .slab.ink {
+    background: var(--ink);
+    color: var(--mint);
+  }
   .paper-row {
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin: var(--space-4) calc(-1 * var(--space-3)) 0;
-    border-top: var(--rule); border-bottom: var(--rule);
+    border-top: var(--rule);
+    border-bottom: var(--rule);
     background: var(--paper);
   }
-  .paper-row:has(.slab.paper:only-child) { grid-template-columns: 1fr; }
-  .paper-row + .work-pair { margin-top: var(--space-4); }
+  .paper-row:has(.slab.paper:only-child) {
+    grid-template-columns: 1fr;
+  }
+  .paper-row + .work-pair {
+    margin-top: var(--space-4);
+  }
   .slab.paper {
-    background: var(--paper); color: var(--ink);
+    background: var(--paper);
+    color: var(--ink);
     padding: var(--space-5) var(--space-3);
   }
-  .slab.paper + .slab.paper { border-left: var(--rule); }
-  .slab .eyebrow { display: block; margin-bottom: var(--space-2); color: inherit; opacity: 0.75; }
-  .slab.paper .eyebrow { color: var(--red); opacity: 1; }
+  .slab.paper + .slab.paper {
+    border-left: var(--rule);
+  }
+  .slab .eyebrow {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: inherit;
+    opacity: 0.75;
+  }
+  .slab.paper .eyebrow {
+    color: var(--red);
+    opacity: 1;
+  }
   .slab h3 {
-    font-family: var(--font-display); font-weight: 400;
-    font-size: clamp(1.9rem, 3.2vw, 3rem); line-height: 1.02;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 1.02;
     text-transform: uppercase;
   }
-  .slab h3 a { color: inherit; text-decoration: none; }
-  .slab h3 a:hover { text-decoration: underline; text-underline-offset: 0.12em; }
-  .slab.paper h3 { color: var(--red); font-size: clamp(1.9rem, 3.2vw, 3rem); }
+  .slab h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .slab h3 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+  .slab.paper h3 {
+    color: var(--red);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+  }
   .slab .dek {
-    font-family: var(--font-display); font-style: italic;
-    font-size: 1.25rem; line-height: 1.35;
-    margin-top: var(--space-2); max-width: 26em;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-top: var(--space-2);
+    max-width: 26em;
   }
 
   /* ---------- approach ---------- */
-  .approach { text-align: center; }
+  .approach {
+    text-align: center;
+  }
   .approach p {
     font-family: var(--font-display);
     font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-    line-height: 1.32; max-width: 28em; margin: 0 auto;
+    line-height: 1.32;
+    max-width: 28em;
+    margin: 0 auto;
   }
-  .approach p + p { margin-top: var(--space-3); }
-  .approach em { color: var(--red); }
+  .approach p + p {
+    margin-top: var(--space-3);
+  }
+  .approach em {
+    color: var(--red);
+  }
 
   @media (max-width: 899px) {
-    .work-pair { grid-template-columns: 1fr; }
-    .paper-row { grid-template-columns: 1fr; }
-    .slab.paper + .slab.paper { border-left: 0; border-top: var(--rule); }
+    .work-pair {
+      grid-template-columns: 1fr;
+    }
+    .paper-row {
+      grid-template-columns: 1fr;
+    }
+    .slab.paper + .slab.paper {
+      border-left: 0;
+      border-top: var(--rule);
+    }
   }
   @media (max-width: 760px) {
-    .hero .duo img { transform: none; }
-    .hero-callout {
-      left: var(--space-2); right: var(--space-2);
-      top: auto; bottom: var(--space-2); max-width: none;
+    .hero .duo img {
+      transform: none;
     }
-    .hero-callout .callout-name { font-size: 1.5rem; }
+    .hero-callout {
+      left: var(--space-2);
+      right: var(--space-2);
+      top: auto;
+      bottom: var(--space-2);
+      max-width: none;
+    }
+    .hero-callout .callout-name {
+      font-size: 1.5rem;
+    }
   }
 </style>

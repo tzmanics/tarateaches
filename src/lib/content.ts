@@ -16,12 +16,18 @@ export function sortByDateDesc<T extends PostLike>(posts: T[]): T[] {
 }
 
 /** Drafts are hidden in production builds but visible in dev. */
-export function visiblePosts<T extends PostLike>(posts: T[], isDev: boolean): T[] {
+export function visiblePosts<T extends PostLike>(
+  posts: T[],
+  isDev: boolean,
+): T[] {
   return isDev ? posts : posts.filter((p) => !p.draft);
 }
 
 /** Where a post's card should link: its own page, or out to an external home. */
-export function postHref(post: PostLike & { id?: string }, slug: string): string {
+export function postHref(
+  post: PostLike & { id?: string },
+  slug: string,
+): string {
   return post.externalUrl ?? `/writing/${slug}/`;
 }
 

@@ -15,7 +15,10 @@ function page(path: string): string {
 
 describe("built site", () => {
   it("has a build to test (run `npm run build` first)", () => {
-    expect(existsSync(dist), "dist/ not found — run `npm run build` before `npm test`").toBe(true);
+    expect(
+      existsSync(dist),
+      "dist/ not found — run `npm run build` before `npm test`",
+    ).toBe(true);
   });
 
   it("homepage renders hero, callout, and all four sections", () => {

@@ -22,7 +22,7 @@ npm run preview    # serve the production build locally
 ```
 
 To run the `/plaiy` function locally you need Wrangler (Cloudflare's CLI),
-which serves the static build *plus* the Pages Functions:
+which serves the static build _plus_ the Pages Functions:
 
 ```bash
 cp .env.example .dev.vars       # then put a real key in .dev.vars (git-ignored)

@@ -63,7 +63,10 @@ async function isRateLimited(env: Env, request: Request): Promise<boolean> {
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!env.ANTHROPIC_API_KEY) {
     // Configuration problem — say so without leaking anything.
-    return json({ error: "The stage lights are off (server not configured)." }, 500);
+    return json(
+      { error: "The stage lights are off (server not configured)." },
+      500,
+    );
   }
 
   let body: unknown;

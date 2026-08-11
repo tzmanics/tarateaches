@@ -39,7 +39,8 @@ const dateLabel = entry.data.date.toLocaleDateString("en-US", {
   </article>
 
   <div class="section back-row">
-    <a class="pill" href="/writing/"><span class="arrow">←</span>More writing</a>
+    <a class="pill" href="/writing/"><span class="arrow">←</span>More writing</a
+    >
   </div>
 </Base>
 
@@ -49,15 +50,25 @@ const dateLabel = entry.data.date.toLocaleDateString("en-US", {
     border-bottom: var(--rule);
     text-align: center;
   }
-  .post-hero .eyebrow { display: block; margin-bottom: var(--space-2); }
+  .post-hero .eyebrow {
+    display: block;
+    margin-bottom: var(--space-2);
+  }
   .post-hero h1 {
     font-size: clamp(2rem, 4.6vw, 4rem);
-    max-width: 18em; margin: 0 auto;
+    max-width: 18em;
+    margin: 0 auto;
   }
   .post-hero .excerpt {
-    font-family: var(--font-display); font-style: italic;
-    font-size: 1.25rem; line-height: 1.35;
-    max-width: 30em; margin: var(--space-2) auto 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    max-width: 30em;
+    margin: var(--space-2) auto 0;
   }
-  .back-row { text-align: center; padding-top: 0; }
+  .back-row {
+    text-align: center;
+    padding-top: 0;
+  }
 </style>
