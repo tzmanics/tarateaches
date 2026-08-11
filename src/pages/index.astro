@@ -340,7 +340,10 @@ const posts = (await getWritingPosts()).slice(0, 6);
       border-top: var(--rule);
     }
   }
-  @media (max-width: 760px) {
+  /* Up through tablet-portrait the side-floated callout would sit on the
+     photo's face, so pin it to the bottom instead (899px matches the
+     work-pair stacking breakpoint). */
+  @media (max-width: 899px) {
     .hero .duo img {
       transform: none;
     }
