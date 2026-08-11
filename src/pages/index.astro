@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import Nav from "../components/Nav.astro";
+import heroPhoto from "../assets/tara-hero-full.jpg";
 import {
   sortByDateDesc,
   visiblePosts,
@@ -50,11 +52,12 @@ const posts = sortByDateDesc(
   <header class="hero" slot="hero">
     <Nav style="over-hero" />
     <div class="duo t-bw">
-      <img
-        src="/images/tara-hero-full.jpg"
+      <Picture
+        src={heroPhoto}
         alt="Tara Manicsic, smiling, on a rooftop with the city skyline behind her"
-        width="1584"
-        height="672"
+        formats={["avif", "webp"]}
+        widths={[480, 800, 1200, 1584]}
+        sizes="100vw"
         loading="eager"
         fetchpriority="high"
       />
