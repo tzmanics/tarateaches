@@ -29,7 +29,9 @@ const { Content } = await render(entry);
   </article>
 
   <div class="section back-row">
-    <a class="pill" href="/#work"><span class="arrow">←</span>Back to the work</a>
+    <a class="pill" href="/#work"
+      ><span class="arrow">←</span>Back to the work</a
+    >
   </div>
 </Base>
 
@@ -37,25 +39,50 @@ const { Content } = await render(entry);
   .study-hero {
     padding: var(--space-5) var(--space-3);
   }
-  .study-hero.red { background: var(--red); color: var(--mint); }
-  .study-hero.ink { background: var(--ink); color: var(--mint); }
+  .study-hero.red {
+    background: var(--red);
+    color: var(--mint);
+  }
+  .study-hero.ink {
+    background: var(--ink);
+    color: var(--mint);
+  }
   .study-hero.paper {
-    background: var(--paper); color: var(--ink);
+    background: var(--paper);
+    color: var(--ink);
     border-bottom: var(--rule);
   }
-  .study-hero .eyebrow { color: inherit; opacity: 0.75; display: block; margin-bottom: var(--space-2); }
-  .study-hero.paper .eyebrow { color: var(--red); opacity: 1; }
+  .study-hero .eyebrow {
+    color: inherit;
+    opacity: 0.75;
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+  .study-hero.paper .eyebrow {
+    color: var(--red);
+    opacity: 1;
+  }
   .study-hero .title {
-    font-family: var(--font-display); font-weight: 400;
-    text-transform: uppercase; line-height: 1.02;
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.02;
     font-size: clamp(2.2rem, 5.5vw, 4.6rem);
     max-width: 16em;
   }
-  .study-hero.paper .title { color: var(--red); }
-  .study-hero .dek {
-    font-family: var(--font-display); font-style: italic;
-    font-size: 1.3rem; line-height: 1.35;
-    margin-top: var(--space-2); max-width: 30em;
+  .study-hero.paper .title {
+    color: var(--red);
   }
-  .back-row { text-align: center; padding-top: 0; }
+  .study-hero .dek {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-top: var(--space-2);
+    max-width: 30em;
+  }
+  .back-row {
+    text-align: center;
+    padding-top: 0;
+  }
 </style>

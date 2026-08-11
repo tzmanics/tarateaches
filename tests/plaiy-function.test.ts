@@ -38,10 +38,10 @@ function makeContext(body: unknown, env: Record<string, unknown> = {}) {
 }
 
 function anthropicOk(text = "There once was a model named Claude…") {
-  return new Response(
-    JSON.stringify({ content: [{ type: "text", text }] }),
-    { status: 200, headers: { "content-type": "application/json" } },
-  );
+  return new Response(JSON.stringify({ content: [{ type: "text", text }] }), {
+    status: 200,
+    headers: { "content-type": "application/json" },
+  });
 }
 
 afterEach(() => {
@@ -78,7 +78,11 @@ describe("POST /api/plaiy", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     await onRequestPost(
-      makeContext({ mode: "absurd", topic: "context windows", register: "toddler" }),
+      makeContext({
+        mode: "absurd",
+        topic: "context windows",
+        register: "toddler",
+      }),
     );
 
     const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
@@ -104,7 +108,9 @@ describe("POST /api/plaiy", () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
 
-    const res = await onRequestPost(makeContext({ mode: "opera", topic: "RAG" }));
+    const res = await onRequestPost(
+      makeContext({ mode: "opera", topic: "RAG" }),
+    );
     expect(res.status).toBe(400);
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -118,7 +124,10 @@ describe("POST /api/plaiy", () => {
 
   it("returns 500 when the server is missing its API key", async () => {
     const res = await onRequestPost(
-      makeContext({ mode: "limerick", topic: "RAG" }, { ANTHROPIC_API_KEY: "" }),
+      makeContext(
+        { mode: "limerick", topic: "RAG" },
+        { ANTHROPIC_API_KEY: "" },
+      ),
     );
     expect(res.status).toBe(500);
     const body = await res.text();
@@ -127,13 +136,18 @@ describe("POST /api/plaiy", () => {
 
   it("returns 502 on upstream failure without leaking upstream details", async () => {
     const fetchMock = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify({ error: { message: `key ${SECRET} invalid` } }), {
-        status: 401,
-      }),
+      new Response(
+        JSON.stringify({ error: { message: `key ${SECRET} invalid` } }),
+        {
+          status: 401,
+        },
+      ),
     );
     vi.stubGlobal("fetch", fetchMock);
 
-    const res = await onRequestPost(makeContext({ mode: "limerick", topic: "RAG" }));
+    const res = await onRequestPost(
+      makeContext({ mode: "limerick", topic: "RAG" }),
+    );
     expect(res.status).toBe(502);
     const body = await res.text();
     expect(body).not.toContain(SECRET);
@@ -141,10 +155,14 @@ describe("POST /api/plaiy", () => {
   });
 
   it("returns 504 when the upstream call rejects (timeout/abort)", async () => {
-    const fetchMock = vi.fn().mockRejectedValue(new DOMException("Aborted", "AbortError"));
+    const fetchMock = vi
+      .fn()
+      .mockRejectedValue(new DOMException("Aborted", "AbortError"));
     vi.stubGlobal("fetch", fetchMock);
 
-    const res = await onRequestPost(makeContext({ mode: "limerick", topic: "RAG" }));
+    const res = await onRequestPost(
+      makeContext({ mode: "limerick", topic: "RAG" }),
+    );
     expect(res.status).toBe(504);
   });
 
@@ -156,10 +174,7 @@ describe("POST /api/plaiy", () => {
     let lastStatus = 0;
     for (let i = 0; i < 21; i++) {
       const res = await onRequestPost(
-        makeContext(
-          { mode: "limerick", topic: "RAG" },
-          { PLAIY_KV: kv },
-        ),
+        makeContext({ mode: "limerick", topic: "RAG" }, { PLAIY_KV: kv }),
       );
       lastStatus = res.status;
     }
@@ -175,7 +190,9 @@ describe("POST /api/plaiy", () => {
     const fetchMock = vi.fn().mockResolvedValue(anthropicOk());
     vi.stubGlobal("fetch", fetchMock);
 
-    const res = await onRequestPost(makeContext({ mode: "rapbattle", topic: "RAG" }));
+    const res = await onRequestPost(
+      makeContext({ mode: "rapbattle", topic: "RAG" }),
+    );
     expect(res.status).toBe(200);
   });
 });

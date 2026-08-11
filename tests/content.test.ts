@@ -23,7 +23,10 @@ describe("sortByDateDesc", () => {
 
 describe("visiblePosts", () => {
   it("hides drafts in production", () => {
-    expect(visiblePosts(posts, false).map((p) => p.title)).toEqual(["old", "new"]);
+    expect(visiblePosts(posts, false).map((p) => p.title)).toEqual([
+      "old",
+      "new",
+    ]);
   });
   it("shows drafts in dev", () => {
     expect(visiblePosts(posts, true)).toHaveLength(3);
@@ -33,24 +36,37 @@ describe("visiblePosts", () => {
 describe("postHref", () => {
   it("prefers external URLs", () => {
     expect(
-      postHref({ title: "x", date: new Date(), externalUrl: "https://example.com/post" }, "x"),
+      postHref(
+        {
+          title: "x",
+          date: new Date(),
+          externalUrl: "https://example.com/post",
+        },
+        "x",
+      ),
     ).toBe("https://example.com/post");
   });
   it("falls back to the local writing route", () => {
-    expect(postHref({ title: "x", date: new Date() }, "my-post")).toBe("/writing/my-post/");
+    expect(postHref({ title: "x", date: new Date() }, "my-post")).toBe(
+      "/writing/my-post/",
+    );
   });
 });
 
 describe("defaultMeta", () => {
   it("labels external posts", () => {
     expect(
-      defaultMeta({ title: "x", date: new Date(), externalUrl: "https://e.com" }),
+      defaultMeta({
+        title: "x",
+        date: new Date(),
+        externalUrl: "https://e.com",
+      }),
     ).toBe("External ↗");
   });
   it("uses the first tag when present", () => {
-    expect(defaultMeta({ title: "x", date: new Date(), tags: ["Curriculum"] })).toBe(
-      "New · Curriculum",
-    );
+    expect(
+      defaultMeta({ title: "x", date: new Date(), tags: ["Curriculum"] }),
+    ).toBe("New · Curriculum");
   });
   it("falls back to New", () => {
     expect(defaultMeta({ title: "x", date: new Date(), tags: [] })).toBe("New");

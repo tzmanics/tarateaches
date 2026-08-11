@@ -1,0 +1,8 @@
+# hand-authored prose stays byte-for-byte as written
+src/content/
+
+# generated / vendored
+dist/
+.astro/
+package-lock.json
+public/

@@ -26,8 +26,7 @@ export interface PlaiyRequest {
 }
 
 export type ValidationResult =
-  | { ok: true; value: PlaiyRequest }
-  | { ok: false; error: string };
+  { ok: true; value: PlaiyRequest } | { ok: false; error: string };
 
 /** Collapse whitespace, strip control characters. Never throws. */
 export function sanitizeTopic(raw: unknown): string {
@@ -46,7 +45,10 @@ export function validateRequest(body: unknown): ValidationResult {
   const b = body as Record<string, unknown>;
 
   const mode = b.mode;
-  if (typeof mode !== "string" || !(MODES as readonly string[]).includes(mode)) {
+  if (
+    typeof mode !== "string" ||
+    !(MODES as readonly string[]).includes(mode)
+  ) {
     return { ok: false, error: `mode must be one of: ${MODES.join(", ")}.` };
   }
 
@@ -55,7 +57,10 @@ export function validateRequest(body: unknown): ValidationResult {
     return { ok: false, error: "topic is required (a few words is perfect)." };
   }
   if (topic.length > TOPIC_MAX) {
-    return { ok: false, error: `topic must be ${TOPIC_MAX} characters or fewer.` };
+    return {
+      ok: false,
+      error: `topic must be ${TOPIC_MAX} characters or fewer.`,
+    };
   }
 
   let register: Register | undefined;
@@ -64,7 +69,10 @@ export function validateRequest(body: unknown): ValidationResult {
       typeof b.register !== "string" ||
       !(REGISTERS as readonly string[]).includes(b.register)
     ) {
-      return { ok: false, error: `register must be one of: ${REGISTERS.join(", ")}.` };
+      return {
+        ok: false,
+        error: `register must be one of: ${REGISTERS.join(", ")}.`,
+      };
     }
     register = b.register as Register;
   }

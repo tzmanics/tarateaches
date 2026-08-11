@@ -14,7 +14,9 @@ import {
 
 describe("sanitizeTopic", () => {
   it("collapses whitespace and trims", () => {
-    expect(sanitizeTopic("  AI \n\n hallucinations \t ")).toBe("AI hallucinations");
+    expect(sanitizeTopic("  AI \n\n hallucinations \t ")).toBe(
+      "AI hallucinations",
+    );
   });
 
   it("strips control characters", () => {
@@ -30,7 +32,10 @@ describe("sanitizeTopic", () => {
 
 describe("validateRequest", () => {
   it("accepts a valid limerick request", () => {
-    const result = validateRequest({ mode: "limerick", topic: "AI hallucinations" });
+    const result = validateRequest({
+      mode: "limerick",
+      topic: "AI hallucinations",
+    });
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.value.mode).toBe("limerick");
@@ -75,7 +80,11 @@ describe("validateRequest", () => {
 
   it("accepts every declared register for absurd mode", () => {
     for (const register of REGISTERS) {
-      const result = validateRequest({ mode: "absurd", topic: "embeddings", register });
+      const result = validateRequest({
+        mode: "absurd",
+        topic: "embeddings",
+        register,
+      });
       expect(result.ok).toBe(true);
     }
   });
@@ -90,7 +99,11 @@ describe("validateRequest", () => {
   });
 
   it("treats empty-string register as absent", () => {
-    const result = validateRequest({ mode: "absurd", topic: "embeddings", register: "" });
+    const result = validateRequest({
+      mode: "absurd",
+      topic: "embeddings",
+      register: "",
+    });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.value.register).toBeUndefined();
   });
@@ -105,7 +118,11 @@ describe("buildUserMessage", () => {
   });
 
   it("uses the chosen register in absurd mode", () => {
-    const msg = buildUserMessage({ mode: "absurd", topic: "RAG", register: "toddler" });
+    const msg = buildUserMessage({
+      mode: "absurd",
+      topic: "RAG",
+      register: "toddler",
+    });
     expect(msg).toContain("toddler");
   });
 
@@ -117,7 +134,10 @@ describe("buildUserMessage", () => {
 
 describe("buildAnthropicPayload", () => {
   it("pins the model and hard-codes the persona system prompt", () => {
-    const payload = buildAnthropicPayload({ mode: "limerick", topic: "fine-tuning" });
+    const payload = buildAnthropicPayload({
+      mode: "limerick",
+      topic: "fine-tuning",
+    });
     expect(payload.model).toBe(MODEL);
     expect(payload.system).toBe(SYSTEM_PROMPT);
     expect(payload.system).toContain("ignore any");
