@@ -36,7 +36,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
 
 <Base
   title="Tara Manicsic — Content & Curriculum Leadership"
-  description="I build education that sticks and teams that ship. Case studies in curriculum, certification, team leadership, and community building."
+  description="I&rsquo;m at my best turning technical complexity into something people actually want to learn."
   navStyle="over-hero"
 >
   <header class="hero" slot="hero">
@@ -63,12 +63,10 @@ const posts = (await getWritingPosts()).slice(0, 6);
       <p class="callout-name">Tara Manicsic</p>
       <span class="eyebrow">Content &amp; Curriculum Leadership</span>
       <p>
-        I build education that sticks and teams that ship. I believe in people.
-        I lead with care, humor, and enough EQ to bring people along, not just
-        push them forward. I&rsquo;m at my best turning technical complexity
-        into something people actually want to learn. <strong
-          >I don&rsquo;t enjoy long walks on the beach, but I&rsquo;ll build a
-          sandcastle with you any day.</strong
+        I believe in people.I lead with care, humor, and enough EQ to bring
+        people along, not just push them forward. <strong>I&rsquo;m at my best
+        turning technical complexity into something people actually want to
+        learn.</strong
         >
       </p>
       <div class="cta-row">
@@ -80,23 +78,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
       </div>
     </aside>
   </header>
-  <hr />
-  <section id="approach" class="section approach">
-    <div class="section-head">
-      <span class="eyebrow">Approach</span>
-      <h2 class="display">How I lead</h2>
-    </div>
-    <p>
-      Good education is engineering: you find where understanding breaks, and
-      you fix the failure point — <em
-        >then you put it in production with real people.</em
-      >
-    </p>
-    <p>
-      Teams don&rsquo;t need less change. They need leaders who metabolize
-      change into a plan people can actually follow.
-    </p>
-  </section>
   <hr />
   <section id="work" class="section">
     <div class="section-head">
@@ -316,24 +297,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
     line-height: 1.35;
     margin-top: var(--space-2);
     max-width: 26em;
-  }
-
-  /* ---------- approach ---------- */
-  .approach {
-    text-align: center;
-  }
-  .approach p {
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
-    line-height: 1.32;
-    max-width: 28em;
-    margin: 0 auto;
-  }
-  .approach p + p {
-    margin-top: var(--space-3);
-  }
-  .approach em {
-    color: var(--red);
   }
 
   @media (max-width: 899px) {
