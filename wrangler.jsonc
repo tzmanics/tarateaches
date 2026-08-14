@@ -1,0 +1,20 @@
+// Deploy config for the `tarateaches` Worker: static assets from the Astro
+// build plus a small Worker that serves the /api/plaiy endpoint.
+//
+// Committing this file makes deploys deterministic — Cloudflare Workers Builds
+// must use THIS config (build command: `npm run build`, deploy command:
+// `npx wrangler deploy`) instead of the dashboard's Astro framework preset,
+// which injects the @astrojs/cloudflare adapter and produces HTML that points
+// at a runtime /_image endpoint no assets-only deploy can serve.
+{
+  "name": "tarateaches",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-11",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
