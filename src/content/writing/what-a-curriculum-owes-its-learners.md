@@ -4,6 +4,7 @@ date: 2026-02-10
 excerpt: "Learners pay in the one currency they can't earn back: time. My checklist for making sure a curriculum is worth the price."
 tags: ["Curriculum"]
 meta: "New · Curriculum"
+draft: true
 ---
 
 <!-- DRAFT: edit into your own words. This is the philosophy piece — answers "What's your education philosophy?" -->

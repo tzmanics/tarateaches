@@ -4,6 +4,7 @@ date: 2026-05-28
 excerpt: "A certificate is a promise you make on the learner's behalf. Designing one that means something changed how I think about all assessment."
 tags: ["Curriculum"]
 meta: "New · Curriculum"
+draft: true
 ---
 
 <!-- DRAFT: edit into your own words and add the real Explorers details. Answers: "How do you know your education works?" -->

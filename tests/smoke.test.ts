@@ -21,14 +21,13 @@ describe("built site", () => {
     ).toBe(true);
   });
 
-  it("homepage renders hero, callout, and all four sections", () => {
+  it("homepage renders hero, callout, and all three sections", () => {
     const html = page("index.html");
     expect(html).toContain("Tara Manicsic");
-    expect(html).toContain("education that sticks and teams that ship");
+    expect(html).toContain("turning technical complexity into something");
     expect(html).toContain('id="work"');
     expect(html).toContain('id="writing"');
     expect(html).toContain('id="speaking"');
-    expect(html).toContain('id="approach"');
   });
 
   it("a case study page renders", () => {
@@ -42,18 +41,22 @@ describe("built site", () => {
     expect(html).toContain("human agency");
   });
 
-  it("the plaiy page renders its form and modes", () => {
-    const html = page("plaiy/index.html");
-    expect(html).toContain('id="plaiy-form"');
-    expect(html).toContain("limerick");
-    expect(html).toContain("rapbattle");
-    expect(html).toContain("absurd");
+  it("the writing section links out to the Netlify blog posts", () => {
+    const html = page("writing/index.html");
+    expect(html).toContain("https://www.netlify.com/blog/");
+    expect(html).toContain("Netlify Blog");
+  });
+
+  it("drafted posts stay out of the production build", () => {
+    expect(
+      existsSync(join(dist, "writing/processes-for-the-process-averse")),
+    ).toBe(false);
   });
 
   it("no page ever contains an API key or env leakage", () => {
     for (const p of [
       "index.html",
-      "plaiy/index.html",
+      "writing/index.html",
       "work/jamstack-explorers/index.html",
     ]) {
       const html = page(p);

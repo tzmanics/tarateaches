@@ -4,6 +4,7 @@ date: 2026-04-20
 excerpt: "Say 'process' to a room of engineers and watch the joy leave their bodies. Here's how I introduce process people actually thank you for."
 tags: ["Leadership"]
 meta: "New · Leadership"
+draft: true
 ---
 
 <!-- DRAFT: adapted from your TechLead Conf 2023 talk — pull in your real examples and jokes. Answers: "How do you lead teams / run processes?" -->

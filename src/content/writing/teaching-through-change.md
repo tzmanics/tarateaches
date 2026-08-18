@@ -4,6 +4,7 @@ date: 2026-03-18
 excerpt: "Every educator's nightmare: the product shipped, and your curriculum is now historical fiction. How to build education that survives its subject."
 tags: ["Education"]
 meta: "New · Education"
+draft: true
 ---
 
 <!-- DRAFT: edit into your own words. Answers: "How would you keep education current while the product changes weekly?" — very relevant to any AI company. -->
