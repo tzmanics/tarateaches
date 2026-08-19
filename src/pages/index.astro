@@ -1,5 +1,4 @@
 ---
-import type { ImageMetadata } from "astro";
 import { getCollection } from "astro:content";
 import { Image, Picture } from "astro:assets";
 import Base from "../layouts/Base.astro";
@@ -8,14 +7,6 @@ import heroPhoto from "../assets/tara-hero-full.jpg";
 import { postHref, defaultMeta } from "../lib/content";
 import { getWritingPosts } from "../lib/posts";
 import talks from "../data/talks.json";
-
-// Talk previews live in src/assets/talks/ and are named in talks.json, so they
-// still get optimised by astro:assets. A missing file just means no preview.
-const talkImages = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/talks/*.{jpg,jpeg,png,avif,webp}",
-);
-const talkImage = (file?: string) =>
-  file ? talkImages[`../assets/talks/${file}`]?.() : undefined;
 
 const studies = (await getCollection("caseStudies")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -139,19 +130,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
       {
         posts.map((p) => (
           <article>
-            {p.image && (
-              <div
-                class="cell-media"
-                style={`--focus: ${p.imagePosition ?? "50% 55%"}`}
-              >
-                <Image
-                  src={p.image}
-                  alt=""
-                  widths={[420, 760]}
-                  sizes="(max-width: 760px) 100vw, 33vw"
-                />
-              </div>
-            )}
             <a href={postHref(p, p.id)}>
               <h3>{p.title}</h3>
             </a>
@@ -169,29 +147,16 @@ const posts = (await getWritingPosts()).slice(0, 6);
     </div>
     <div class="hair-grid red">
       {
-        talks.map((t) => {
-          const img = talkImage(t.image);
-          return (
-            <article>
-              {img && (
-                <div class="cell-media">
-                  <Image
-                    src={img}
-                    alt=""
-                    widths={[420, 760]}
-                    sizes="(max-width: 760px) 100vw, 33vw"
-                  />
-                </div>
-              )}
-              <a href={t.url}>
-                <h3>{t.title}</h3>
-              </a>
-              <span class="meta">
-                {t.kind} · {t.venue}
-              </span>
-            </article>
-          );
-        })
+        talks.map((t) => (
+          <article>
+            <a href={t.url}>
+              <h3>{t.title}</h3>
+            </a>
+            <span class="meta">
+              {t.kind} · {t.venue}
+            </span>
+          </article>
+        ))
       }
     </div>
   </section>

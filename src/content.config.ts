@@ -3,22 +3,17 @@ import { glob } from "astro/loaders";
 
 const writing = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/writing" }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      date: z.coerce.date(),
-      excerpt: z.string(),
-      tags: z.array(z.string()).default([]),
-      draft: z.boolean().default(false),
-      /** External posts (e.g. on the Netlify blog) link out instead of rendering locally. */
-      externalUrl: z.string().url().optional(),
-      /** Short label shown in the grid, e.g. "New · Curriculum" or "Netlify Blog ↗". */
-      meta: z.string().optional(),
-      /** Preview image bled into the bottom half of the grid cell. */
-      image: image().optional(),
-      /** Optional focal point, any CSS object-position. Defaults to "50% 45%". */
-      imagePosition: z.string().optional(),
-    }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    excerpt: z.string(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    /** External posts (e.g. on the Netlify blog) link out instead of rendering locally. */
+    externalUrl: z.string().url().optional(),
+    /** Short label shown in the grid, e.g. "New · Curriculum" or "Netlify Blog ↗". */
+    meta: z.string().optional(),
+  }),
 });
 
 const caseStudies = defineCollection({

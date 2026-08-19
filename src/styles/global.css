@@ -321,35 +321,6 @@
     filter: grayscale(1) blur(3px);
     transform: scale(1.6);
   }
-
-  /* ---------- image preview: hairline grid cells ---------- */
-  /* Bottom half only, masked so it bleeds up instead of forming a box. */
-  .hair-grid > * {
-    position: relative;
-    overflow: hidden;
-    min-height: 12.5rem;
-  }
-  .hair-grid > * > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .cell-media {
-    position: absolute;
-    inset: 50% 0 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    mask-image: linear-gradient(to bottom, transparent, #000 42%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 42%);
-  }
-  .cell-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: var(--focus, 50% 55%);
-    opacity: 0.62;
-  }
 }
 
 @layer layout {

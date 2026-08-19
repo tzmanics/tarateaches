@@ -3,49 +3,36 @@
     "title": "Processes for the Process-Averse",
     "venue": "TechLead Conf 2023",
     "url": "https://portal.gitnation.org/contents/processes-for-the-process-averse",
-    "kind": "Talk",
-    "image": "processes-for-the-process-averse.jpg"
+    "kind": "Talk"
   },
   {
     "title": "The Economic Case for Generative AI",
     "venue": "Netlify Compose 2023",
     "url": "https://www.youtube.com/watch?v=tpIkXprX4_8",
-    "kind": "Talk",
-    "image": "talks-generative-ai.jpeg"
+    "kind": "Talk"
   },
   {
     "title": "ES2019 Features: What Even Are They?",
     "venue": "JSConf EU 2019",
     "url": "https://www.youtube.com/watch?v=1_hHxra0Lf4",
-    "kind": "Talk",
-    "image": "es2019-features.jpg"
+    "kind": "Talk"
   },
   {
     "title": "Render the Right Way for You",
     "venue": "ng-conf 2020",
     "url": "https://www.youtube.com/watch?v=esv8mEkKpPM",
-    "kind": "Workshop",
-    "image": "render-the-right-way.jpg"
+    "kind": "Workshop"
   },
   {
     "title": "Angular in the Jamstack: From “I Dunno” to Pro",
     "venue": "Workshop series",
     "url": "https://github.com/tzmanics/workshop-angular-in-the-jamstack",
-    "kind": "Workshop",
-    "image": "angular-in-the-jamstack.jpg"
-  },
-  {
-    "title": "Conference Co-Emcee",
-    "venue": "ng-conf 2018 & 2019",
-    "url": "https://2019.ng-conf.org/welcome-tara/",
-    "kind": "Hosting",
-    "image": "ng-conf-emcee.jpg"
+    "kind": "Workshop"
   },
   {
     "title": "Community Talk",
     "venue": "DonutJS Portland 2017",
     "url": "https://www.youtube.com/watch?v=XhIPaj_Zq9c",
-    "kind": "Talk",
-    "image": "donutjs-community-talk.jpg"
+    "kind": "Talk"
   }
 ]
