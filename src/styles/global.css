@@ -250,6 +250,106 @@
     font-size: clamp(1.6rem, 3.6vw, 3rem);
     line-height: 1.15;
   }
+
+  /* ---------- image preview: wash into the slab ---------- */
+  /* Shared: the media layer sits behind the content, never above it. */
+  .slab {
+    position: relative;
+    overflow: hidden;
+  }
+  .slab > .slab-body {
+    position: relative;
+    z-index: 2;
+  }
+
+  .slab-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .slab-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focus, 50% 45%);
+    opacity: 0.5; /* approved wash strength */
+  }
+  /* The scrim keeps the type legible — gradient runs away from the text. */
+  .slab-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      var(--wash) 30%,
+      color-mix(in srgb, var(--wash) 72%, transparent) 60%,
+      color-mix(in srgb, var(--wash) 20%, transparent)
+    );
+  }
+  .slab.red {
+    --wash: var(--red);
+  }
+  .slab.ink {
+    --wash: var(--ink);
+  }
+
+  /* Paper slabs: photo owns the right third, full colour, no gradient over it. */
+  .slab.paper .slab-media {
+    inset: 0 0 0 auto;
+    width: 36%;
+  }
+  .slab.paper .slab-media img {
+    opacity: 1;
+  }
+  .slab.paper .slab-media::after {
+    background: linear-gradient(
+      to right,
+      var(--paper),
+      color-mix(in srgb, var(--paper) 15%, transparent) 46%,
+      color-mix(in srgb, var(--paper) 15%, transparent)
+    );
+  }
+  .slab.paper .slab-body {
+    max-width: 60%;
+  }
+
+  /* Screenshots that are mostly UI type: add class="ui-shot" so the copy inside
+     the image stops reading as body text. */
+  .slab-media img.ui-shot {
+    opacity: 0.28;
+    filter: grayscale(1) blur(3px);
+    transform: scale(1.6);
+  }
+
+  /* ---------- image preview: hairline grid cells ---------- */
+  /* Bottom half only, masked so it bleeds up instead of forming a box. */
+  .hair-grid > * {
+    position: relative;
+    overflow: hidden;
+    min-height: 12.5rem;
+  }
+  .hair-grid > * > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cell-media {
+    position: absolute;
+    inset: 50% 0 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent, #000 42%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 42%);
+  }
+  .cell-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focus, 50% 55%);
+    opacity: 0.62;
+  }
 }
 
 @layer layout {

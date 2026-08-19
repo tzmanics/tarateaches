@@ -8,6 +8,8 @@ facts:
   - "Led engineering for a platform where many creators produced one consistent learner experience — the hard part was the “one consistent” part."
   - "Shipped the mission structure, certification path, and the creator tooling behind them."
   - "Coordinated engineers, educators, designers, and marketing to launch — and kept the creators shipping after the launch buzz faded."
+image: ./images/jamstack-explorers.png
+imagePosition: "82% 50%"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

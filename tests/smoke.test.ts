@@ -25,7 +25,7 @@ describe("built site", () => {
     const html = page("index.html");
     expect(html).toContain("Tara Manicsic");
     expect(html).toContain("turning technical complexity into something");
-    expect(html).toContain('id="work"');
+    expect(html).toContain('id="building"');
     expect(html).toContain('id="writing"');
     expect(html).toContain('id="speaking"');
   });
