@@ -1,13 +1,16 @@
 ---
 title: "Women Who Code & NodeSchool, Cincinnati"
 org: "Community"
-dek: "Founded two chapters. The real test: they kept running without me."
+dek: "Founded, led, and organized two chapters to help grow the Cincinnati tech community."
 order: 3
 theme: "paper"
 facts:
   - "Launched the Cincinnati chapter of Women Who Code and the Cincinnati branch of NodeSchool."
   - "Built rooms where new developers could learn without gatekeeping — recurring events, real mentors, no hazing."
   - "Recruited and grew local leaders so the chapters outlived my direct involvement."
+image: ./images/girlscouts.jpg
+imagePosition: "42% 90%"
+url: "https://www.wcpo.com/news/insider/code-talkers-through-events-like-hackcincy-the-tri-state-tries-to-stress-its-tech-centered-future"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

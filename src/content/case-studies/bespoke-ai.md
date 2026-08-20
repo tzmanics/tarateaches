@@ -1,13 +1,15 @@
 ---
 title: "Bespoke AI"
 org: "Independent"
-dek: "An adaptive AI-literacy tutor — one tutor, one model, transferable concepts, meeting learners exactly where they are."
+dek: "An adaptive AI-literacy tutor meeting learners exactly where they are."
 order: 4
 theme: "paper"
 facts:
   - "A compact learner profile — proficiency, learning style, tutor notes — drives elastic module depth: pass first-try and the content condenses."
   - "Modules only count as complete after a mandatory validation step: learners must articulate how they'd fact-check the AI's output."
   - "The whole product talks to a model-agnostic TutorEngine seam — the vendor name appears in exactly one file."
+image: ./images/bespoke.png
+url: "https://github.com/tzmanics/Bespoke-AI"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

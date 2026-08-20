@@ -294,24 +294,8 @@
     --wash: var(--ink);
   }
 
-  /* Paper slabs: photo owns the right third, full colour, no gradient over it. */
-  .slab.paper .slab-media {
-    inset: 0 0 0 auto;
-    width: 36%;
-  }
-  .slab.paper .slab-media img {
-    opacity: 1;
-  }
-  .slab.paper .slab-media::after {
-    background: linear-gradient(
-      to right,
-      var(--paper),
-      color-mix(in srgb, var(--paper) 15%, transparent) 46%,
-      color-mix(in srgb, var(--paper) 15%, transparent)
-    );
-  }
-  .slab.paper .slab-body {
-    max-width: 60%;
+  .slab.paper {
+    --wash: var(--paper);
   }
 
   /* Screenshots that are mostly UI type: add class="ui-shot" so the copy inside

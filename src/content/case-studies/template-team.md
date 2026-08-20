@@ -1,13 +1,16 @@
 ---
 title: "Template Team"
 org: "Netlify"
-dek: "Building a team that held steady while the platform underneath it kept changing."
+dek: "Leading a team that created a steady flow of template resources working with multiple internal and external teams."
 order: 2
 theme: "ink"
 facts:
   - "Built and led the team behind Netlify's official templates through rapid product and framework change."
   - "Turned template quality into a repeatable process instead of a heroic effort."
   - "Kept the team communicating, shipping, and intact through re-orgs and shifting priorities."
+image: ./images/templateteam.png
+imagePosition: "42% 60%"
+url: "https://www.youtube.com/watch?v=zQO98Cjrup4"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

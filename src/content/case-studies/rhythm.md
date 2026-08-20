@@ -1,13 +1,16 @@
 ---
 title: "Rhythm"
 org: "Independent"
-dek: "An adaptive household schedule that never needs rescheduling — tomorrow isn't moved, it's computed."
+dek: "An adaptive household schedule that never needs rescheduling. Tomorrow isn't moved, it's computed."
 order: 6
 theme: "ink"
 facts:
   - "Runs a real household day — kid anchors, meals, chores on every cycle from daily to yearly, and a marathon training plan — on two data types and one pure function."
   - "Nothing is stored per-day, so misses are absorbed instead of rescheduled; the training plan rebuilds itself from the last completed run."
   - "Ask your schedule questions in plain language — Claude answers straight off the completion log."
+image: ./images/rhythm.png
+imagePosition: "2% 10%"
+url: "https://rhythmtodo.netlify.app"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

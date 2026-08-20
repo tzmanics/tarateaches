@@ -1,13 +1,16 @@
 ---
 title: "witchai.dev"
 org: "Independent"
-dek: "A task-to-model router — type what you're trying to do, get the smartest, cheapest, most energy-light AI model for that exact job."
+dek: "A task-to-model generator. Type what you're trying to do, get the smartest, cheapest, most energy-light AI model for that exact job."
 order: 5
 theme: "red"
 facts:
   - "One input → a ranked short-list of model + provider picks, scored on cost, skill, and energy, weighted by the user's drag-and-drop priorities."
   - "Live OpenRouter pricing and Artificial Analysis benchmark data, refreshed on a schedule and cached in Netlify Blobs."
   - "One static HTML file, vanilla JS, zero framework, zero build step — the tool practices the lightness it preaches."
+image: ./images/witchai.png
+imagePosition: "1% 10%"
+url: "https://github.com/tzmanics/witchai"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->

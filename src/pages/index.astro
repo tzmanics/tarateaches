@@ -35,7 +35,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
 ---
 
 <Base
-  title="Tara Manicsic | Content & Curriculum Leadership"
+  title="Tara Manicsic | Tech Educator & Curriculum Architect"
   description="I’m at my best turning technical complexity into something people actually want to learn."
   navStyle="over-hero"
 >
@@ -61,7 +61,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
 
     <aside class="hero-callout">
       <p class="callout-name">Tara Manicsic</p>
-      <span class="eyebrow">Content &amp; Curriculum Leadership</span>
+      <span class="eyebrow">Tech Educator &amp; Curriculum Architect</span>
       <p>
         I believe in people. I lead with care, humor, and enough EQ to bring
         people along, not just push them forward. <strong
@@ -109,8 +109,8 @@ const posts = (await getWritingPosts()).slice(0, 6);
               )}
               <div class="slab-body">
                 <span class="eyebrow">Case study · {s.data.org}</span>
-                <h3>
-                  <a href={`/work/${s.id}/`}>{s.data.title}</a>
+                <h3> {console.log(s.rendered.metadata.frontmatter.url)}
+                  <a href={s.rendered.metadata.frontmatter.url} target="_blank" rel="noopener noreferrer">{s.data.title}</a>
                 </h3>
                 <p class="dek">{s.data.dek}</p>
               </div>
@@ -120,7 +120,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
       ))
     }
   </section>
-  <hr />
   <section id="writing" class="section">
     <div class="section-head">
       <span class="eyebrow">Writing</span>
@@ -260,8 +259,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: var(--space-4) calc(-1 * var(--space-3)) 0;
-    border-top: var(--rule);
-    border-bottom: var(--rule);
     background: var(--paper);
   }
   .paper-row:has(.slab.paper:only-child) {
@@ -273,10 +270,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
   .slab.paper {
     background: var(--paper);
     color: var(--ink);
-    padding: var(--space-5) var(--space-3);
-  }
-  .slab.paper + .slab.paper {
-    border-left: var(--rule);
+    padding: var(--space-4) var(--space-3);
   }
   .slab .eyebrow {
     display: block;

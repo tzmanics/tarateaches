@@ -1,15 +1,16 @@
 ---
-title: "JAMstack Explorers"
+title: "Jamstack Explorers"
 org: "Netlify"
-dek: "Tech lead on a multi-creator learning platform — video missions, hands-on paths, and a certification learners actually finished."
+dek: "Tech lead on a multi-creator learning platform with video missions, hands-on paths, and a certification path."
 order: 1
 theme: "red"
 facts:
-  - "Led engineering for a platform where many creators produced one consistent learner experience — the hard part was the “one consistent” part."
+  - "Led engineering for a platform where many creators produced one consistent learner experience."
   - "Shipped the mission structure, certification path, and the creator tooling behind them."
-  - "Coordinated engineers, educators, designers, and marketing to launch — and kept the creators shipping after the launch buzz faded."
+  - "Coordinated engineers, educators, designers, and marketing to launch."
 image: ./images/jamstack-explorers.png
 imagePosition: "82% 50%"
+url: "https://youtu.be/PPtmowJoe3s"
 ---
 
 <!-- DRAFT: edit into your own words and add the details only you know. -->
