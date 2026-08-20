@@ -4,6 +4,7 @@ date: 2026-06-15
 excerpt: "We tend to trust AI too little or too much, throwing human agency back into the mix can balance this out."
 tags: ["AI Education"]
 meta: "New · AI Education"
+draft: true
 ---
 # AI literacy: trust & agency
 
