@@ -109,7 +109,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
               )}
               <div class="slab-body">
                 <span class="eyebrow">Case study · {s.data.org}</span>
-                <h3> {console.log(s.rendered.metadata.frontmatter.url)}
+                <h3>
                   <a href={s.rendered.metadata.frontmatter.url} target="_blank" rel="noopener noreferrer">{s.data.title}</a>
                 </h3>
                 <p class="dek">{s.data.dek}</p>
