@@ -63,11 +63,10 @@ const posts = (await getWritingPosts()).slice(0, 6);
       <p class="callout-name">Tara Manicsic</p>
       <span class="eyebrow">Tech Educator &amp; Curriculum Architect</span>
       <p>
-        I believe in people. I lead with care, humor, and enough EQ to bring
-        people along, not just push them forward. <strong
-          >I&rsquo;m at my best turning technical complexity into something
-          people actually want to learn.</strong
-        >
+        I&rsquo;m at my best turning technical complexity into something
+        people actually want to learn.<strong> I believe in people. I lead with
+        care, humor, and enough EQ to bring people along, not just push them
+        forward.</strong> 
       </p>
       <div class="cta-row">
         <a class="pill" href="#building"
@@ -75,6 +74,12 @@ const posts = (await getWritingPosts()).slice(0, 6);
         >
         <a class="pill ghost" href="/resume-tara-manicsic.pdf" download
           ><span class="arrow">→</span>Resume (PDF)</a
+        >
+        <a
+          class="pill ghost"
+          href="https://www.linkedin.com/in/tzmanicsic/"
+          target="_blank"
+          rel="noopener noreferrer"><span class="arrow">↗</span>LinkedIn</a
         >
       </div>
     </aside>
@@ -232,16 +237,9 @@ const posts = (await getWritingPosts()).slice(0, 6);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
-    max-width: 74rem;
-    margin: 0 auto;
-  }
-  @media (min-width: 900px) {
-    .work-pair {
-      padding-bottom: var(--askew);
-    }
-    .work-pair .slab:nth-child(2) {
-      transform: translateY(var(--askew));
-    }
+    /* Cancel the section's inline padding so the slabs reach the viewport
+       edges, the same full-bleed treatment .paper-row gets. */
+    margin: 0 calc(-1 * var(--space-3));
   }
 
   .slab {
@@ -258,8 +256,8 @@ const posts = (await getWritingPosts()).slice(0, 6);
   .paper-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
     margin: var(--space-4) calc(-1 * var(--space-3)) 0;
-    background: var(--paper);
   }
   .paper-row:has(.slab.paper:only-child) {
     grid-template-columns: 1fr;
@@ -316,10 +314,6 @@ const posts = (await getWritingPosts()).slice(0, 6);
     }
     .paper-row {
       grid-template-columns: 1fr;
-    }
-    .slab.paper + .slab.paper {
-      border-left: 0;
-      border-top: var(--rule);
     }
   }
   /* Up through tablet-portrait the side-floated callout would sit on the

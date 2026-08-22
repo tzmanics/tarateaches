@@ -4,10 +4,29 @@ interface Props {
 }
 const { style = "on-page" } = Astro.props;
 const path = Astro.url.pathname;
+// Prefilled mailto so a first note arrives with the details I'd ask for anyway.
+const contactSubject = "Hello from tarateaches.com";
+const contactBody = [
+  "Hi Tara,",
+  "",
+  "I'm ___ at ___, and I came across your site while looking for ___.",
+  "",
+  "What I have in mind:",
+  "",
+  "Timeline / next step:",
+  "",
+  "Thanks!",
+  "",
+].join("\n");
+const contactHref =
+  `mailto:tzmanics@gmail.com?subject=${encodeURIComponent(contactSubject)}` +
+  `&body=${encodeURIComponent(contactBody)}`;
+
 const links = [
   { href: "/#building", label: "Building" },
   { href: "/#writing", label: "Writing" },
   { href: "/#speaking", label: "Speaking" },
+  { href: contactHref, label: "Contact Me" },
 ];
 ---
 
