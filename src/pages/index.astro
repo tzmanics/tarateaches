@@ -63,10 +63,11 @@ const posts = (await getWritingPosts()).slice(0, 6);
       <p class="callout-name">Tara Manicsic</p>
       <span class="eyebrow">Tech Educator &amp; Curriculum Architect</span>
       <p>
-        I&rsquo;m at my best turning technical complexity into something
-        people actually want to learn.<strong> I believe in people. I lead with
-        care, humor, and enough EQ to bring people along, not just push them
-        forward.</strong> 
+        I&rsquo;m at my best turning technical complexity into something people
+        actually want to learn.<strong>
+          I believe in people. I lead with care, humor, and enough EQ to bring
+          people along, not just push them forward.</strong
+        >
       </p>
       <div class="cta-row">
         <a class="pill" href="#building"
@@ -115,7 +116,13 @@ const posts = (await getWritingPosts()).slice(0, 6);
               <div class="slab-body">
                 <span class="eyebrow">Case study · {s.data.org}</span>
                 <h3>
-                  <a href={s.rendered.metadata.frontmatter.url} target="_blank" rel="noopener noreferrer">{s.data.title}</a>
+                  <a
+                    href={s.rendered.metadata.frontmatter.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {s.data.title}
+                  </a>
                 </h3>
                 <p class="dek">{s.data.dek}</p>
               </div>
@@ -210,7 +217,9 @@ const posts = (await getWritingPosts()).slice(0, 6);
     display: block;
     width: 3.5rem;
     height: 3px;
-    background: var(--red);
+    background: var(
+      --neon
+    ); /* the one accent, on a ground dark enough for it */
     margin-bottom: var(--space-2);
   }
   .hero-callout p {
@@ -245,8 +254,10 @@ const posts = (await getWritingPosts()).slice(0, 6);
   .slab {
     padding: var(--space-4) var(--space-3);
   }
+  /* --red now resolves to ink, so this one takes the mid grey to stay
+     distinct from the .ink slab beside it. */
   .slab.red {
-    background: var(--red);
+    background: var(--surface-mid);
     color: var(--mint);
   }
   .slab.ink {
@@ -277,7 +288,7 @@ const posts = (await getWritingPosts()).slice(0, 6);
     opacity: 0.75;
   }
   .slab.paper .eyebrow {
-    color: var(--red);
+    color: var(--muted);
     opacity: 1;
   }
   .slab h3 {
@@ -292,6 +303,9 @@ const posts = (await getWritingPosts()).slice(0, 6);
     text-decoration: none;
   }
   .slab h3 a:hover {
+    /* Neon reads 12.5:1 on the ink slab and 4.1:1 on the red one — both a
+       clear lift from the resting mint, with the underline as the backup. */
+    color: var(--neon);
     text-decoration: underline;
     text-underline-offset: 0.12em;
   }

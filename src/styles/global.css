@@ -5,11 +5,19 @@
 
 @layer tokens {
   :root {
-    --mint: #b7d2c7;
-    --red: #b8430f;
-    --red-deep: #8f2716;
-    --ink: #221e18;
-    --paper: #f0ebe0;
+    /* Monochrome ramp. The chromatic token NAMES are kept deliberately: the
+       whole system already flows through them, so only the values moved. --red
+       now resolves to ink, which is correct for every place it was accent text
+       or a hairline; the two places it was a dark BACKGROUND use --surface-mid
+       so the slabs still separate from each other. */
+    --mint: #ececeb; /* page ground */
+    --paper: #f5f5f4; /* light panel */
+    --ink: #141414; /* text, and the deep ground */
+    --red: #141414;
+    --red-deep: #141414;
+    --muted: #6a6a68; /* small tracked labels — 4.59:1 on the ground */
+    --surface-mid: #3a3a39; /* second dark ground, keeps slab variety */
+    --neon: #00ffaa; /* the only colour left; appears on hover and focus */
 
     --font-display: "DM Serif Display", Georgia, serif;
     --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -49,9 +57,12 @@
   a {
     color: inherit;
   }
+  /* Doubled on purpose: neon vanishes on light grounds and ink vanishes on
+     dark, so whichever half has contrast is the half you see. */
   :focus-visible {
-    outline: 3px solid var(--red);
-    outline-offset: 3px;
+    outline: 3px solid var(--neon);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--ink);
   }
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -92,16 +103,16 @@
     mix-blend-mode: lighten;
   }
   .t-bw {
-    --lo: #1e1b16;
-    --hi: #f2ede3;
+    --lo: #141414;
+    --hi: #f5f5f4;
   }
   .t-mint {
-    --lo: #1e1b16;
+    --lo: #141414;
     --hi: var(--mint);
   }
   .t-red {
-    --lo: var(--red-deep);
-    --hi: var(--mint);
+    --lo: #3a3a39;
+    --hi: var(--paper);
   }
 
   /* ---------- type roles ---------- */
@@ -110,7 +121,7 @@
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--red);
+    color: var(--muted);
   }
   .display {
     font-family: var(--font-display);
@@ -221,10 +232,22 @@
     color: var(--ink);
   }
   .hair-grid.ink .meta {
-    color: var(--red);
+    color: var(--muted);
   }
-  .hair-grid.ink a:hover h3 {
-    color: var(--red);
+  /* Highlighter swipe: the band grows from zero width, so the cue is a shape
+     appearing, not a colour change. Text goes ink on hover (12.5:1 on the
+     neon) for both the .red and .ink grid variants. */
+  .hair-grid a h3 {
+    background-image: linear-gradient(var(--neon), var(--neon));
+    background-repeat: no-repeat;
+    background-position: 0 88%;
+    background-size: 0 0.34em;
+    transition: background-size 0.18s ease;
+  }
+  .hair-grid a:hover h3,
+  .hair-grid a:focus-visible h3 {
+    background-size: 100% 0.34em;
+    color: var(--ink);
   }
 
   .hair-grid > *:nth-child(3n) {
@@ -287,7 +310,8 @@
     );
   }
   .slab.red {
-    --wash: var(--red);
+    /* matches the .slab.red background, which took --surface-mid */
+    --wash: var(--surface-mid);
   }
   .slab.ink {
     --wash: var(--ink);
@@ -428,6 +452,10 @@
     text-decoration-thickness: 2px;
     text-underline-offset: 0.3em;
   }
+  .site-footer a:hover {
+    color: var(--neon);
+    text-decoration-thickness: 3px;
+  }
 
   /* ---------- prose (blog posts, case studies) ---------- */
   .prose {
@@ -543,10 +571,10 @@
 
 @layer tokens {
   :root {
-    --greige: #e5e2da; /* the ground */
-    --noir: #201e1b; /* display + headings */
-    --noir-body: #3a3733; /* body copy sits a step back from the display */
-    --noir-soft: #6d675f; /* labels, captions, ornaments */
+    --greige: #f5f5f4; /* the post panel, a shade above the page ground */
+    --noir: #141414; /* display + headings */
+    --noir-body: #3a3a39; /* body copy sits a step back from the display */
+    --noir-soft: #6a6a68; /* labels, captions, ornaments */
     --rule-noir: 1px solid color-mix(in srgb, var(--noir) 30%, transparent);
     /* Didone-adjacent display face; DM Serif Display is too heavy for the
        wide-tracked caps this layout is built on. */
@@ -601,6 +629,18 @@
     line-height: 1.85;
     color: var(--noir-body);
     padding-top: var(--space-4);
+    column-count: 1;
+    column-gap: var(--space-4);
+  }
+  /* Columns balance across the whole article, so top margins would leave the
+     column heads ragged — space runs downward instead. */
+  .post-page .prose > * {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+  }
+  .post-page .prose > figure,
+  .post-page .prose blockquote {
+    break-inside: avoid;
   }
   .post-page .prose p,
   .post-page .prose li {
@@ -608,10 +648,6 @@
     text-align: justify;
     hyphens: auto;
   }
-  .post-page .prose > * + * {
-    margin-top: 1.6em;
-  }
-
   /* ---------- headings: wide-tracked Didone caps ---------- */
   .post-page .prose h2 {
     font-family: var(--font-didone);
@@ -622,7 +658,8 @@
     letter-spacing: 0.16em;
     font-size: clamp(1.15rem, 2.4vw, 1.6rem);
     line-height: 1.35;
-    margin-top: 3em;
+    column-span: all;
+    margin: 3em 0 1.2em;
     padding-top: 1.4em;
     border-top: var(--rule-noir);
   }
@@ -662,6 +699,10 @@
   }
   .post-page .prose a:hover {
     text-decoration-color: var(--noir);
+    background-image: linear-gradient(var(--neon), var(--neon));
+    background-repeat: no-repeat;
+    background-position: 0 92%;
+    background-size: 100% 0.3em;
   }
   .post-page .prose hr {
     border: 0;
@@ -713,6 +754,21 @@
   }
   .video-embed figcaption a {
     color: inherit;
+  }
+
+  /* Half-width window: two columns. */
+  @media (min-width: 761px) {
+    .post-page .prose {
+      column-count: 2;
+      max-width: min(90%, 54rem);
+    }
+  }
+  /* Full screen: three. */
+  @media (min-width: 1100px) {
+    .post-page .prose {
+      column-count: 3;
+      max-width: min(94%, 76rem);
+    }
   }
 
   @media (max-width: 760px) {
