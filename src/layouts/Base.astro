@@ -8,9 +8,11 @@ interface Props {
   description: string;
   /** "over-hero" overlays the nav on a hero image; "on-page" is the default bar. */
   navStyle?: "over-hero" | "on-page";
+  /** Page-level theme hook, e.g. "post-page" for the beige editorial treatment. */
+  bodyClass?: string;
 }
 
-const { title, description, navStyle = "on-page" } = Astro.props;
+const { title, description, navStyle = "on-page", bodyClass } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -30,7 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:wdth,wght@62..125,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Archivo:wdth,wght@62..125,100..900&display=swap"
       rel="stylesheet"
     />
     <!-- Cloudflare Web Analytics: paste your token below after creating the
@@ -40,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
     -->
   </head>
-  <body>
+  <body class={bodyClass}>
     {navStyle === "on-page" && <Nav style="on-page" />}
     <slot name="hero" />
     <main>

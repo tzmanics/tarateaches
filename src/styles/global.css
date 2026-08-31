@@ -23,7 +23,6 @@
     --space-3: 2rem;
     --space-4: 3.5rem;
     --space-5: 6rem;
-    --measure: 34em;
   }
 }
 
@@ -432,13 +431,14 @@
 
   /* ---------- prose (blog posts, case studies) ---------- */
   .prose {
-    max-width: var(--measure);
     margin: 0 auto;
+    max-width: min(70%, 42em);
   }
   .prose > * + * {
     margin-top: 1.2em;
   }
   .prose h2 {
+    text-align: left;
     font-family: var(--font-display);
     font-weight: 400;
     text-transform: uppercase;
@@ -448,6 +448,7 @@
     margin-top: 2em;
   }
   .prose h3 {
+    text-align: right;
     font-family: var(--font-display);
     font-weight: 400;
     font-size: 1.3rem;
@@ -479,6 +480,9 @@
   .prose hr {
     border: 0;
     border-top: var(--rule);
+  }
+  .prose p {
+    font-family: var(--font-display);
   }
 
   @media (max-width: 760px) {
@@ -524,6 +528,201 @@
     }
     .hair-grid > *:last-child {
       border-bottom: 0 !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   "On the blog" — beige & black editorial theme for long-form writing posts.
+   Modeled on the Canva "beige and black simple elegant blog" layout: greige
+   ground, near-black ink, a high-contrast Didone in wide-tracked caps for
+   display, small justified Archivo for body, hairline rules carrying a ✦.
+   Scoped to body.post-page (set in src/pages/writing/[slug].astro) so the
+   mint/red system on every other page is untouched.
+   ========================================================================== */
+
+@layer tokens {
+  :root {
+    --greige: #e5e2da; /* the ground */
+    --noir: #201e1b; /* display + headings */
+    --noir-body: #3a3733; /* body copy sits a step back from the display */
+    --noir-soft: #6d675f; /* labels, captions, ornaments */
+    --rule-noir: 1px solid color-mix(in srgb, var(--noir) 30%, transparent);
+    /* Didone-adjacent display face; DM Serif Display is too heavy for the
+       wide-tracked caps this layout is built on. */
+    --font-didone: "Playfair Display", "DM Serif Display", Georgia, serif;
+  }
+}
+
+@layer layout {
+  .post-page {
+    background: var(--greige);
+    color: var(--noir-body);
+  }
+  .post-page .nav.on-page {
+    border-bottom: 0;
+    color: var(--noir);
+  }
+  .post-page .nav ul a {
+    font-size: 0.66rem;
+    letter-spacing: 0.3em;
+  }
+  .post-page :focus-visible {
+    outline-color: var(--noir);
+  }
+
+  /* ---------- hairline rule with a centered ✦ ---------- */
+  .orn-rule {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    color: var(--noir-soft);
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+  .orn-rule::before,
+  .orn-rule::after {
+    content: "";
+    flex: 1;
+    border-top: var(--rule-noir);
+  }
+  .orn-rule span {
+    font-size: 0.55rem;
+    line-height: 1;
+    letter-spacing: 0.5em;
+    padding-left: 0.5em; /* balance the trailing letter-space */
+  }
+
+  /* ---------- body copy: small, justified, sans ---------- */
+  .post-page .prose {
+    max-width: min(82%, 46em);
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    line-height: 1.85;
+    color: var(--noir-body);
+    padding-top: var(--space-4);
+  }
+  .post-page .prose p,
+  .post-page .prose li {
+    font-family: inherit;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .post-page .prose > * + * {
+    margin-top: 1.6em;
+  }
+
+  /* ---------- headings: wide-tracked Didone caps ---------- */
+  .post-page .prose h2 {
+    font-family: var(--font-didone);
+    font-weight: 400;
+    color: var(--noir);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    line-height: 1.35;
+    margin-top: 3em;
+    padding-top: 1.4em;
+    border-top: var(--rule-noir);
+  }
+  .post-page .prose h3 {
+    text-align: center;
+    font-family: var(--font-didone);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--noir);
+    margin-top: 2.2em;
+  }
+
+  /* ---------- pull quote: rules instead of a bar ---------- */
+  .post-page .prose blockquote:not(.tiktok-embed) {
+    border-left: 0;
+    border-top: var(--rule-noir);
+    border-bottom: var(--rule-noir);
+    margin-inline: 0;
+    padding: var(--space-3) var(--space-2);
+    text-align: center;
+    font-family: var(--font-didone);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    line-height: 1.45;
+    color: var(--noir);
+  }
+
+  .post-page .prose a {
+    color: var(--noir);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in srgb, var(--noir) 40%, transparent);
+  }
+  .post-page .prose a:hover {
+    text-decoration-color: var(--noir);
+  }
+  .post-page .prose hr {
+    border: 0;
+    border-top: var(--rule-noir);
+    width: 5rem;
+    margin: var(--space-4) auto;
+  }
+  .post-page .prose code {
+    font-size: 0.88em;
+    background: color-mix(in srgb, var(--noir) 7%, transparent);
+  }
+  /* The template rounds its portrait images; keep that on post imagery. */
+  .post-page .prose img {
+    border-radius: 999px 999px 12px 12px;
+    margin-inline: auto;
+  }
+
+  /* ---------- embedded video ----------
+     The frame IS the video: no card, no padding, no white. TikTok's
+     blockquote embed renders a white caption card inside a cross-origin
+     iframe we cannot restyle, so posts use the bare player URL
+     (tiktok.com/player/v1/<id>) and the black letterbox sits flush. */
+  .video-embed {
+    width: min(100%, 320px);
+    margin: var(--space-4) auto;
+    background: #000;
+    line-height: 0;
+    font-size: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .video-embed iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border: 0;
+    background: #000;
+  }
+  .video-embed figcaption {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    line-height: 1.7;
+    color: var(--noir-soft);
+    text-align: center;
+    background: var(--greige);
+    padding-top: 0.9rem;
+  }
+  .video-embed figcaption a {
+    color: inherit;
+  }
+
+  @media (max-width: 760px) {
+    .post-page .prose {
+      max-width: 100%;
+      font-size: 0.9rem;
+    }
+    .post-page .prose p,
+    .post-page .prose li {
+      text-align: left; /* justification breaks down at phone measures */
     }
   }
 }
