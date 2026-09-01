@@ -302,11 +302,13 @@ const posts = (await getWritingPosts()).slice(0, 6);
     color: inherit;
     text-decoration: none;
   }
+  /* Title holds its own colour; the neon rides underneath it. The rule is the
+     whole signal here, so it carries a bit more weight than a default
+     underline — 13.9:1 on the ink slab, 8.6:1 on the mid-grey one. */
   .slab h3 a:hover {
-    /* Neon reads 12.5:1 on the ink slab and 4.1:1 on the red one — both a
-       clear lift from the resting mint, with the underline as the backup. */
-    color: var(--neon);
     text-decoration: underline;
+    text-decoration-color: var(--neon);
+    text-decoration-thickness: 0.07em;
     text-underline-offset: 0.12em;
   }
   .slab.paper h3 {
