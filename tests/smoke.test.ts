@@ -32,7 +32,7 @@ describe("built site", () => {
 
   it("a case study page renders", () => {
     const html = page("work/jamstack-explorers/index.html");
-    expect(html).toContain("JAMstack Explorers");
+    expect(html).toContain("Jamstack Explorers");
     expect(html).toContain("Case study");
   });
 
