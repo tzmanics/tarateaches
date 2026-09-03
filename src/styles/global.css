@@ -644,13 +644,13 @@
   }
   .post-page .prose p,
   .post-page .prose li {
-    font-family: inherit;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: justify;
     hyphens: auto;
   }
   /* ---------- headings: wide-tracked Didone caps ---------- */
   .post-page .prose h2 {
-    font-family: var(--font-didone);
+    font-family: (--font-didone);
     font-weight: 400;
     color: var(--noir);
     text-align: center;
